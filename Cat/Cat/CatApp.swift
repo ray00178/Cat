@@ -9,9 +9,27 @@ import SwiftUI
 
 @main
 struct CatApp: App {
-    var body: some Scene {
-        WindowGroup {
-            AppView()
+  @State private var starAnimation: Bool = false
+
+  var body: some Scene {
+    WindowGroup {
+      ZStack {
+        if starAnimation {
+          LaunchScreen()
+        } else {
+          AppScreen()
+            .environmentObject(APIManager.shared)
         }
+      }
+      .onAppear {
+        starAnimation.toggle()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+          withAnimation {
+            starAnimation.toggle()
+          }
+        }
+      }
     }
+  }
 }

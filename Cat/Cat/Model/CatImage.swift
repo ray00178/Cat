@@ -37,6 +37,7 @@ struct CatImage: Identifiable, Hashable, Decodable {
     
     imageId = try container.decodeIfPresent(String.self, forKey: .imageId)
     url = try container.decodeIfPresent(URL.self, forKey: .url)
+    
     if let value = try? container.decodeIfPresent(Int.self, forKey: .width) {
       width = value
     }

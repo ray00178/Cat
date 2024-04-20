@@ -10,11 +10,12 @@ import SwiftUI
 // MARK: - CatAsyanImageView
 
 struct CatAsyanImageView: View {
+  @EnvironmentObject private var apiManager: APIManager
+  
+  @State private var image: Image?
   
   /// Resource
   var url: URL?
-
-  var padding: CGFloat = .zero
 
   var body: some View {
     AsyncImage(url: url, transaction: .init(animation: .bouncy)) { phase in
@@ -37,17 +38,26 @@ struct CatAsyanImageView: View {
       }
     }
     .contextMenu {
-      if let url,
-         let data = try? Data(contentsOf: url),
-         let uiImage = UIImage(data: data)
-      {
-        let image = Image(uiImage: uiImage)
+      if let image {
         ShareLink(item: image, preview: SharePreview("Image", image: image)) {
-          Label("Share", systemImage: "square.and.arrow.up")
+          Label("Share via", systemImage: "square.and.arrow.up")
         }
+      }
 
+      if let url {
         ShareLink(item: url) {
           Label("Link", systemImage: "link")
+        }
+      }
+    }
+    .onAppear {
+      Task {
+        if let url = url?.absoluteString,
+           let data = await apiManager.fetchData(from: url),
+           data.count != 0,
+           let uiImage = UIImage(data: data)
+        {
+          image = Image(uiImage: uiImage)
         }
       }
     }

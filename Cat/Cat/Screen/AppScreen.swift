@@ -1,5 +1,5 @@
 //
-//  AppView.swift
+//  AppScreen.swift
 //  Cat
 //
 //  Created by Ray on 2024/4/13.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppView: View {
+struct AppScreen: View {
   
   @State private var tab: Tab = .cat
   
@@ -21,18 +21,18 @@ struct AppView: View {
         }
         .tag(Tab.cat)
     }
-    .tint(Color(._050505))
+    .tint(.c050505)
   }
 }
 
 #Preview {
-  AppView()
+  AppScreen()
     .environmentObject(APIManager.shared)
 }
 
-// MARK: AppView.Tab
+// MARK: AppScreen.Tab
 
-extension AppView {
+extension AppScreen {
   enum Tab {
     
     case cat
