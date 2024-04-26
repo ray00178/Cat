@@ -19,7 +19,7 @@ struct LaunchScreen: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background {
-      LinearGradient(colors: [.white, .cA791A6],
+      LinearGradient(colors: [.c77E7FD, .white],
                      startPoint: .top,
                      endPoint: .bottom)
     }
@@ -31,13 +31,12 @@ struct LaunchScreen: View {
     Image(.launchCat)
       .resizable()
       .scaledToFit()
-      .frame(width: 150)
+      .frame(width: 200)
   }
 
   @ViewBuilder
   private func animationTitle() -> some View {
-    let title = "Cat"
-
+    
     VStack {
       Spacer()
 
@@ -46,18 +45,6 @@ struct LaunchScreen: View {
         .scaledToFit()
         .frame(width: 97)
         .padding(.bottom, 100)
-
-      /* ZStack {
-         ForEach(0 ..< 3) { index in
-           AnimationTextView(
-             title: title,
-             color: .white.opacity(Double(index) * 0.35),
-             delay: delays[index],
-             animation: .spring(duration: 1)
-           )
-         }
-       }
-       .padding(.bottom, 40) */
     }
   }
 }

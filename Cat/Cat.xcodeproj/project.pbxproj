@@ -26,8 +26,9 @@
 		717070142BCA5C1500EB5F03 /* APISecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717070112BCA5C1500EB5F03 /* APISecret.swift */; };
 		717070162BCA5C2D00EB5F03 /* CatScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717070152BCA5C2D00EB5F03 /* CatScreen.swift */; };
 		717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */; };
-		7170701A2BCA727900EB5F03 /* FullSwipeNavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717070192BCA727900EB5F03 /* FullSwipeNavigationStack.swift */; };
 		7170701C2BCD7B4F00EB5F03 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */; };
+		717070202BD42EA200EB5F03 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170701F2BD42EA200EB5F03 /* LoadingView.swift */; };
+		71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +52,9 @@
 		717070112BCA5C1500EB5F03 /* APISecret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISecret.swift; sourceTree = "<group>"; };
 		717070152BCA5C2D00EB5F03 /* CatScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatScreen.swift; sourceTree = "<group>"; };
 		717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailScreen.swift; sourceTree = "<group>"; };
-		717070192BCA727900EB5F03 /* FullSwipeNavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullSwipeNavigationStack.swift; sourceTree = "<group>"; };
 		7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		7170701F2BD42EA200EB5F03 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				717070152BCA5C2D00EB5F03 /* CatScreen.swift */,
 				717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */,
 				7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */,
+				71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -130,11 +133,11 @@
 		717070002BCA5BCD00EB5F03 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
-				717070192BCA727900EB5F03 /* FullSwipeNavigationStack.swift */,
 				717070052BCA5BEC00EB5F03 /* CatAsyanImageView.swift */,
 				717070042BCA5BEC00EB5F03 /* CatBottomView.swift */,
 				717070062BCA5BEC00EB5F03 /* CatLeftView.swift */,
 				717070032BCA5BEC00EB5F03 /* CatRightView.swift */,
+				7170701F2BD42EA200EB5F03 /* LoadingView.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -234,14 +237,15 @@
 				71706FEB2BCA5B8900EB5F03 /* AppScreen.swift in Sources */,
 				71706FFD2BCA5BBE00EB5F03 /* URLSession+Extension.swift in Sources */,
 				7170700D2BCA5BFD00EB5F03 /* Cat.swift in Sources */,
+				71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */,
 				7170700E2BCA5BFD00EB5F03 /* CatImage.swift in Sources */,
 				71706FE92BCA5B8900EB5F03 /* CatApp.swift in Sources */,
 				71706FFB2BCA5BBE00EB5F03 /* Data+Extension.swift in Sources */,
+				717070202BD42EA200EB5F03 /* LoadingView.swift in Sources */,
 				71706FFC2BCA5BBE00EB5F03 /* Array+Extension.swift in Sources */,
 				717070132BCA5C1500EB5F03 /* APIRequest.swift in Sources */,
 				7170701C2BCD7B4F00EB5F03 /* LaunchScreen.swift in Sources */,
 				717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */,
-				7170701A2BCA727900EB5F03 /* FullSwipeNavigationStack.swift in Sources */,
 				71706FFE2BCA5BBE00EB5F03 /* Dictionary+Extension.swift in Sources */,
 				717070082BCA5BEC00EB5F03 /* CatBottomView.swift in Sources */,
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,

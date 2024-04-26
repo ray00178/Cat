@@ -43,9 +43,8 @@ struct CatScreen: View {
         }
         .overlay(alignment: .bottom) {
           if isLoading {
-            ProgressView()
-              .frame(width: 30, height: 30)
-              .offset(y: (30 + 40) / 2)
+            LoadingView()
+              .offset(y: (20 + 40) / 2)
           }
         }
         .padding(.bottom, 40)
@@ -68,7 +67,6 @@ struct CatScreen: View {
       .navigationTitle("Cat Every Day")
       .navigationDestination(for: CatImage.self) { animal in
         CatDetailScreen(path: $path, catImage: animal)
-          .enableFullSwipePop(true)
       }
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
@@ -87,7 +85,7 @@ struct CatScreen: View {
 
   private func fetch(page: Int) async {
     isLoading = true
-    
+
     let images = await apiManager.fetchCatImages(page: page)
     cats.append(contentsOf: Cat.convertWith(catImages: images))
     lastImageId = cats.last?.id

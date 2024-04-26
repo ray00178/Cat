@@ -17,9 +17,21 @@ struct AppScreen: View {
         .tabItem {
           Image(.tabCat)
             .renderingMode(.template)
+            .resizable()
+            .scaledToFit()
           Text("Cat")
         }
         .tag(Tab.cat)
+      
+      WeatherScreen()
+        .tabItem {
+          Image(.tabWeather)
+            .renderingMode(.template)
+            .resizable()
+            .scaledToFit()
+          Text("Weather")
+        }
+        .tag(Tab.weather)
     }
     .tint(.c050505)
   }
@@ -37,6 +49,6 @@ extension AppScreen {
     
     case cat
     
-    case profile
+    case weather
   }
 }

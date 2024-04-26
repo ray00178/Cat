@@ -13,14 +13,6 @@ struct CatDetailScreen: View {
   
   @Binding var path: NavigationPath
   
-  @State private var swipeGesture: UIPanGestureRecognizer = {
-    let pan = UIPanGestureRecognizer()
-    pan.name = UUID().uuidString
-    pan.isEnabled = false
-
-    return pan
-  }()
-  
   var catImage: CatImage
   
   var body: some View {
@@ -50,7 +42,7 @@ struct CatDetailScreen: View {
                 .padding(10)
                 .background(
                   RoundedRectangle(cornerRadius: 5)
-                    .foregroundStyle(.indigo)
+                    .foregroundStyle(.c050505)
                 )
                 .shadow(radius: 5)
             }
