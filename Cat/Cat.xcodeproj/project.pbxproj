@@ -28,7 +28,10 @@
 		717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */; };
 		7170701C2BCD7B4F00EB5F03 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */; };
 		717070202BD42EA200EB5F03 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170701F2BD42EA200EB5F03 /* LoadingView.swift */; };
+		7180192E2BE1C75A00038740 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180192D2BE1C75A00038740 /* ImageHelper.swift */; };
+		718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718019342BEFDD1C00038740 /* ScaleImageScreen.swift */; };
 		71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */; };
+		71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C542BE1C27E002AAB26 /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,11 @@
 		717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatDetailScreen.swift; sourceTree = "<group>"; };
 		7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		7170701F2BD42EA200EB5F03 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		7180192D2BE1C75A00038740 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		718019322BE2928500038740 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		718019342BEFDD1C00038740 /* ScaleImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleImageScreen.swift; sourceTree = "<group>"; };
 		71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreen.swift; sourceTree = "<group>"; };
+		71D32C542BE1C27E002AAB26 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +94,8 @@
 		71706FE72BCA5B8900EB5F03 /* Cat */ = {
 			isa = PBXGroup;
 			children = (
+				718019322BE2928500038740 /* Info.plist */,
+				7180192C2BE1C74800038740 /* Helper */,
 				717070022BCA5BD900EB5F03 /* Network */,
 				717070012BCA5BD300EB5F03 /* Model */,
 				717070002BCA5BCD00EB5F03 /* Widget */,
@@ -114,6 +123,7 @@
 				71706FF72BCA5BBE00EB5F03 /* Data+Extension.swift */,
 				71706FFA2BCA5BBE00EB5F03 /* Dictionary+Extension.swift */,
 				71706FF92BCA5BBE00EB5F03 /* URLSession+Extension.swift */,
+				71D32C542BE1C27E002AAB26 /* View+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -126,6 +136,7 @@
 				717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */,
 				7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */,
 				71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */,
+				718019342BEFDD1C00038740 /* ScaleImageScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -159,6 +170,14 @@
 				717070112BCA5C1500EB5F03 /* APISecret.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7180192C2BE1C74800038740 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7180192D2BE1C75A00038740 /* ImageHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */,
 				7170700A2BCA5BEC00EB5F03 /* CatLeftView.swift in Sources */,
 				717070142BCA5C1500EB5F03 /* APISecret.swift in Sources */,
 				717070162BCA5C2D00EB5F03 /* CatScreen.swift in Sources */,
@@ -250,7 +270,9 @@
 				717070082BCA5BEC00EB5F03 /* CatBottomView.swift in Sources */,
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,
 				717070092BCA5BEC00EB5F03 /* CatAsyanImageView.swift in Sources */,
+				71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */,
 				717070072BCA5BEC00EB5F03 /* CatRightView.swift in Sources */,
+				7180192E2BE1C75A00038740 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,8 +409,11 @@
 				DEVELOPMENT_TEAM = ZGW479ZTBD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WithCat;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Easily add photos on Cat";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Cat want to use your photos for selected";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,6 +430,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -421,8 +447,11 @@
 				DEVELOPMENT_TEAM = ZGW479ZTBD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Cat/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WithCat;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Easily add photos on Cat";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Cat want to use your photos for selected";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -439,6 +468,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

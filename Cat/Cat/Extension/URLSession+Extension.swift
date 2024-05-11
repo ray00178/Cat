@@ -10,8 +10,8 @@ import Foundation
 extension URLSession {
   
   /// Use for normal request
-  static var normalSession: URLSession = {
-    // Reference = https://www.avanderlee.com/swift/urlsessionconfiguration/
+  static let normalSession: URLSession = {
+    // Reference: https://www.avanderlee.com/swift/urlsessionconfiguration/
     let config: URLSessionConfiguration = URLSessionConfiguration.default
     config.waitsForConnectivity = true
     config.timeoutIntervalForRequest = 30
@@ -22,7 +22,7 @@ extension URLSession {
   }()
   
   /// Use for image download
-  static var cacheSession: URLSession = {
+  static let cacheSession: URLSession = {
     let config: URLSessionConfiguration = URLSessionConfiguration.default
     
     // memory = 20MB

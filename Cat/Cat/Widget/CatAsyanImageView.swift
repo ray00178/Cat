@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import UIKit
 
 // MARK: - CatAsyanImageView
 
 struct CatAsyanImageView: View {
   @EnvironmentObject private var apiManager: APIManager
-  
+
   @State private var image: Image?
-  
+
   /// Resource
   var url: URL?
-
+  
+  /// When photo save to library success
+  var didPhotoSaveSuccess: NormalClosure<Image>?
+  
   var body: some View {
     AsyncImage(url: url, transaction: .init(animation: .bouncy)) { phase in
       switch phase {
@@ -41,6 +45,12 @@ struct CatAsyanImageView: View {
       if let image {
         ShareLink(item: image, preview: SharePreview("Image", image: image)) {
           Label("Share via", systemImage: "square.and.arrow.up")
+        }
+
+        Button {
+          didPhotoSaveSuccess?(image)
+        } label: {
+          Label("Save Photo", systemImage: "square.and.arrow.down")
         }
       }
 
@@ -67,6 +77,7 @@ struct CatAsyanImageView: View {
 #Preview {
   CatAsyanImageView(
     url: URL(string: "https://cdn2.thecatapi.com/images/d9b.jpg"))
+    .environmentObject(APIManager.shared)
 }
 
 // MARK: - LayoutType

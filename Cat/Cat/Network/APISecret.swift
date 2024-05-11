@@ -11,5 +11,5 @@ struct APISecret {
   
   static let domain: String = "https://api.thecatapi.com/v1/images/search"
   
-  static let key: String = "live_PNLdiO6lUTpN0xpuoogKmhQkh4WNUvCNfOyqZmu9fDBh2xXAjPftyjY8BAuVk0KQ_1"
+  static let key: String = "live_PNLdiO6lUTpN0xpuoogKmhQkh4WNUvCNfOyqZmu9fDBh2xXAjPftyjY8BAuVk0KQ"
 }

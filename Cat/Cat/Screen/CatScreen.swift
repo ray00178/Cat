@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - CatScreen
 
 struct CatScreen: View {
-  // Reference = https://pse.is/5swnzn
+  // Reference: https://pse.is/5swnzn
   @EnvironmentObject private var apiManager: APIManager
 
   @State private var page: Int = 0
@@ -20,6 +20,9 @@ struct CatScreen: View {
   @State private var isLoading: Bool = true
   @State private var path: NavigationPath = .init()
 
+  @State private var showAlert: Bool = false
+  @State private var animation: Bool = false
+
   var body: some View {
     NavigationStack(path: $path) {
       ScrollView(.vertical) {
@@ -27,9 +30,22 @@ struct CatScreen: View {
           ForEach(cats) { cat in
             switch cat.layout {
             case .left:
-              CatLeftView(cats: cat.images) { image in
-                path.append(image)
-              }
+              CatLeftView(
+                cats: cat.images,
+                onPress: { catImage in
+                  path.append(catImage)
+                },
+                didPhotoSaveSuccess: { _ in
+                  showAlert.toggle()
+//                  let helper = ImageHelper()
+//                  helper.didCompleted = {
+//                    showAlert.toggle()
+//                    print("showAlert = \(showAlert)")
+//                  }
+//
+//                  helper.savePhoto(uiImage: image.snapshot())
+                }
+              )
             case .average:
               CatBottomView(cats: cat.images) { image in
                 path.append(image)
@@ -80,6 +96,50 @@ struct CatScreen: View {
       if cats.isNotEmpty { return }
 
       await fetch(page: page)
+    }
+    .overlay(alignment: .center) {
+      if showAlert {
+        successAlert()
+      }
+    }
+  }
+
+  @MainActor
+  @ViewBuilder
+  private func successAlert() -> some View {
+    ZStack {
+      Rectangle()
+        .fill(.white)
+        .frame(width: 150, height: 150)
+        .overlay {
+          VStack(spacing: 12) {
+            Image(systemName: "checkmark.shield")
+              .font(.largeTitle)
+            Text("Saved")
+              .font(.headline)
+          }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .opacity(animation ? 0 : 1)
+        .scaleEffect(animation ? 0 : 1)
+        .animation(.easeInOut(duration: 0.25), value: animation)
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .background {
+      Color.black.opacity(0.35)
+    }
+    .ignoresSafeArea()
+    .onAppear {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+        animation.toggle()
+      }
+
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        showAlert.toggle()
+      }
+    }
+    .onDisappear {
+      animation = false
     }
   }
 

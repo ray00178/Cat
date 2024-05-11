@@ -9,19 +9,19 @@ import SwiftUI
 
 struct AppScreen: View {
   
-  @State private var tab: Tab = .cat
+  @State private var tab: Tab = .grid
   
   var body: some View {
     TabView(selection: $tab) {
       CatScreen()
         .tabItem {
-          Image(.tabCat)
+          Image(.tabGrid)
             .renderingMode(.template)
             .resizable()
             .scaledToFit()
           Text("Cat")
         }
-        .tag(Tab.cat)
+        .tag(Tab.grid)
       
       WeatherScreen()
         .tabItem {
@@ -47,7 +47,7 @@ struct AppScreen: View {
 extension AppScreen {
   enum Tab {
     
-    case cat
+    case grid
     
     case weather
   }

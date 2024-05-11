@@ -36,7 +36,6 @@ struct LaunchScreen: View {
 
   @ViewBuilder
   private func animationTitle() -> some View {
-    
     VStack {
       Spacer()
 

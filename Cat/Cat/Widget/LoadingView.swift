@@ -13,7 +13,7 @@ struct LoadingView: View {
   
   private var width: CGFloat
   
-  init(width: CGFloat = 16.0) {
+  init(width: CGFloat = 12.0) {
     self.width = width
   }
   
@@ -31,6 +31,7 @@ struct LoadingView: View {
     }
   }
   
+  @MainActor
   @ViewBuilder
   private func circle(color: Color, delay: CGFloat) -> some View {
     Circle()

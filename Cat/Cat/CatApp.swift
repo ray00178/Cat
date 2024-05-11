@@ -38,3 +38,9 @@ struct CatApp: App {
     }
   }
 }
+
+// MARK: - Typealias
+
+typealias EmptyClosure = () -> Swift.Void
+
+typealias NormalClosure<T> = (T) -> Swift.Void

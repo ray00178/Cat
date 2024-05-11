@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-@MainActor
-final class APIManager: ObservableObject {
+// Reference: https://pse.is/5wcbfw
+final class APIManager: ObservableObject, Sendable {
   
   static let shared: APIManager = .init()
   
@@ -19,6 +19,8 @@ final class APIManager: ObservableObject {
 // MARK: - Http Request
 
 extension APIManager {
+  
+  // Reference: https://www.avanderlee.com/concurrency/concurrency-safe-global-variables-to-prevent-data-races/
   
   /// Http Request
   /// - Parameters:
