@@ -7,12 +7,90 @@
 
 import SwiftUI
 
+// Reference: https://www.hackingwithswift.com/books/ios-swiftui/how-to-use-gestures-in-swiftui
 struct ScaleImageScreen: View {
+  @State private var isDragging: Bool = false
+  @State private var offset: CGSize = .zero
+  
+  @State private var scale: CGFloat = 1.0
+  @State private var finalScale: CGFloat = 1.0
+
+  @State private var rotate = Angle.zero
+  @State private var finalRotate = Angle.zero
+
+  var image: Image?
+
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    let magnifyGesture = MagnifyGesture()
+      .onChanged { value in
+        scale = value.magnification
+      }
+      .onEnded { value in
+        finalScale *= value.magnification
+        scale = 1.0
+        
+        if finalScale < 1 {
+          withAnimation(.smooth()) {
+            finalScale = 1.0
+            scale = 1.0
+          }
+        }
+        
+        isDragging = finalScale > 1.0
+        
+        print("When scale change, isDragging = \(isDragging)")
+      }
+    
+    let rotateGesture = RotateGesture()
+      .onChanged { value in
+        rotate = value.rotation
+      }
+      .onEnded { _ in
+        withAnimation(.smooth()) {
+          rotate = .zero
+        }
+      }
+    
+    // coordinateSpace default = .local 表示
+    let dragGesture = DragGesture(coordinateSpace: .global)
+      .onChanged { value in
+        print("dragGesture change = \(value.translation)")
+        guard isDragging else { return }
+        
+        
+        offset = value.translation
+//        if scale * finalScale > 1 {
+//          offset = value.translation
+//        }
+      }
+      .onEnded { value in
+        guard isDragging else { return }
+        
+        withAnimation(.spring) {
+          offset = .zero
+        }
+      }
+    let combine = SimultaneousGesture(
+      dragGesture,
+      SimultaneousGesture(magnifyGesture, rotateGesture)
+  )
+
+    ZStack(alignment: .center) {
+      Image(.temple)
+        .resizable()
+        .scaledToFit()
+        .offset(offset)
+        .scaleEffect(scale * finalScale)
+        .rotationEffect(rotate)
+        .gesture(dragGesture)
+        .gesture(SimultaneousGesture(magnifyGesture, rotateGesture))
+        
+    }
   }
 }
 
 #Preview {
   ScaleImageScreen()
+    .preferredColorScheme(.dark)
 }
