@@ -32,6 +32,8 @@
 		718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718019342BEFDD1C00038740 /* ScaleImageScreen.swift */; };
 		71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */; };
 		71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C542BE1C27E002AAB26 /* View+Extension.swift */; };
+		71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */; };
+		71F8CCF92C023AD700B5D00A /* LEDSettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		718019342BEFDD1C00038740 /* ScaleImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleImageScreen.swift; sourceTree = "<group>"; };
 		71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreen.swift; sourceTree = "<group>"; };
 		71D32C542BE1C27E002AAB26 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDScreen.swift; sourceTree = "<group>"; };
+		71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDSettingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 				7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */,
 				71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */,
 				718019342BEFDD1C00038740 /* ScaleImageScreen.swift */,
+				71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */,
+				71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 				71706FEB2BCA5B8900EB5F03 /* AppScreen.swift in Sources */,
 				71706FFD2BCA5BBE00EB5F03 /* URLSession+Extension.swift in Sources */,
 				7170700D2BCA5BFD00EB5F03 /* Cat.swift in Sources */,
+				71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */,
 				71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */,
 				7170700E2BCA5BFD00EB5F03 /* CatImage.swift in Sources */,
 				71706FE92BCA5B8900EB5F03 /* CatApp.swift in Sources */,
@@ -271,6 +278,7 @@
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,
 				717070092BCA5BEC00EB5F03 /* CatAsyanImageView.swift in Sources */,
 				71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */,
+				71F8CCF92C023AD700B5D00A /* LEDSettingScreen.swift in Sources */,
 				717070072BCA5BEC00EB5F03 /* CatRightView.swift in Sources */,
 				7180192E2BE1C75A00038740 /* ImageHelper.swift in Sources */,
 			);
