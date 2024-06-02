@@ -29,7 +29,7 @@ struct LEDScreen: View {
           .foregroundStyle(background.opacity(0.6))
 
         // 屬性順序重要
-        Text("Hi Swift World 🍎 Yap")
+        Text("休假中 有事不要找我")
           .font(.system(size: fontSize))
           .fontDesign(.monospaced)
           .fontWeight(.bold)
@@ -74,7 +74,7 @@ struct LEDScreen: View {
 
 #Preview {
   LEDScreen(fontColor: .constant(.yellow),
-            fontSize: .constant(150),
+            fontSize: .constant(200),
             background: .constant(.green),
             duration: .constant(5))
 }
