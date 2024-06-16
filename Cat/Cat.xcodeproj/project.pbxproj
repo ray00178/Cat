@@ -35,6 +35,7 @@
 		71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */; };
 		71F8CCF92C023AD700B5D00A /* LEDSettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */; };
 		71F8CCFB2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCFA2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift */; };
+		71F8CCFD2C1D0CBD00B5D00A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCFC2C1D0CBD00B5D00A /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDScreen.swift; sourceTree = "<group>"; };
 		71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDSettingScreen.swift; sourceTree = "<group>"; };
 		71F8CCFA2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipClockTextEffectScreen.swift; sourceTree = "<group>"; };
+		71F8CCFC2C1D0CBD00B5D00A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				71706FFA2BCA5BBE00EB5F03 /* Dictionary+Extension.swift */,
 				71706FF92BCA5BBE00EB5F03 /* URLSession+Extension.swift */,
 				71D32C542BE1C27E002AAB26 /* View+Extension.swift */,
+				71F8CCFC2C1D0CBD00B5D00A /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */,
 				71706FFE2BCA5BBE00EB5F03 /* Dictionary+Extension.swift in Sources */,
 				717070082BCA5BEC00EB5F03 /* CatBottomView.swift in Sources */,
+				71F8CCFD2C1D0CBD00B5D00A /* String+Extension.swift in Sources */,
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,
 				717070092BCA5BEC00EB5F03 /* CatAsyanImageView.swift in Sources */,
 				71F8CCFB2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift in Sources */,

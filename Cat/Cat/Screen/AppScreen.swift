@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AppScreen: View {
   
-  @State private var tab: Tab = .grid
+  @State private var showing: Bool = false
+  @State private var tab: Tab = .weather
   
   var body: some View {
     TabView(selection: $tab) {
@@ -32,8 +33,19 @@ struct AppScreen: View {
           Text("Weather")
         }
         .tag(Tab.weather)
+      
+      LEDSettingScreen()
+        .tabItem {
+          Image(.tabWeather)
+            .renderingMode(.template)
+            .resizable()
+            .scaledToFit()
+          Text("LED")
+        }
+        .tag(Tab.led)
     }
     .tint(.c050505)
+    .foregroundStyle(.white)
   }
 }
 
@@ -50,5 +62,7 @@ extension AppScreen {
     case grid
     
     case weather
+    
+    case led
   }
 }

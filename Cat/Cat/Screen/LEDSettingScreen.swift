@@ -5,19 +5,21 @@
 //  Created by Ray on 2024/5/25.
 //
 
+import OSLog
 import SwiftUI
 
 // MARK: - LEDSettingScreen
 
 struct LEDSettingScreen: View {
   private let textColors: [Color] = [
-    .red, .orange, .yellow, .green, .blue, .purple, .white
+    .red, .orange, .yellow, .green, .blue, .purple, .white,
   ]
 
   private let backgroundColors: [Color] = [
-    .red, .orange, .yellow, .green, .blue, .purple, .black
+    .red, .orange, .yellow, .green, .blue, .purple, .black,
   ]
 
+  @State private var text: String = ""
   @State private var textWidth: CGFloat = .zero
   @State private var offsetX: CGFloat = .zero
   @State private var fontSize: CGFloat = 100
@@ -37,7 +39,7 @@ struct LEDSettingScreen: View {
             .clipped()
 
           // 屬性順序重要
-          Text("休假中 有事不要找我")
+          Text(text)
             .font(.system(size: fontSize))
             .fontDesign(.monospaced)
             .fontWeight(.bold)
@@ -46,13 +48,14 @@ struct LEDSettingScreen: View {
             .background {
               GeometryReader { textGeo -> Color in
                 DispatchQueue.main.async {
-                  textWidth = textGeo.size.width
+                  let textWidth = textGeo.size.width
+                  offsetX = abs(geo.size.width - textWidth) / 2
                 }
 
                 return Color.clear
               }
             }
-            .offset(x: offsetX)
+            // .offset(x: offsetX)
             .position(y: geo.size.height / 2)
             .mask {
               Image(.led)
@@ -62,41 +65,40 @@ struct LEDSettingScreen: View {
                 .frame(width: geo.size.width, height: geo.size.height)
                 .clipped()
             }
-            .onAppear {
-              DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                offsetX = geo.size.width + textWidth
-              }
-
-              DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)) {
-                  offsetX = -textWidth
-                }
-              }
-            }
         }
       }
       .frame(height: 300)
-      
-//      Text("Text Width = \(textWidth)")
-//        .font(.headline)
-//        .foregroundStyle(.white)
-      
+
       ScrollView {
         VStack(spacing: 8) {
-          ColorSelectedView(title: "Text Color", datas: textColors, tap: { color in
-            withAnimation {
-              selectedTextColor = color
+          InputTextView(text: $text)
+
+          ColorSelectedView(
+            selectedColor: $selectedTextColor,
+            title: "Text Color",
+            colors: textColors,
+            tap: { color in
+              withAnimation {
+                selectedTextColor = color
+              }
             }
-          }, selectedColor: $selectedTextColor)
-          
-          ColorSelectedView(title: "Background Color", datas: backgroundColors, tap: { color in
-            withAnimation {
-              selectedBackgroundColor = color
+          )
+
+          ColorSelectedView(
+            selectedColor: $selectedBackgroundColor,
+            title: "Background Color",
+            colors: backgroundColors,
+            tap: { color in
+              withAnimation {
+                selectedBackgroundColor = color
+              }
             }
-          }, selectedColor: $selectedBackgroundColor)
-          
-          TextSizeSelectedView(datas: [100, 150, 200]) { value in
-            fontSize = value
+          )
+
+          TextSizeSelectedView(datas: [100, 125, 150]) { value in
+            withAnimation {
+              fontSize = value
+            }
           }
         }
       }
@@ -107,17 +109,15 @@ struct LEDSettingScreen: View {
 }
 
 #Preview {
-  LEDSettingScreen.InputTextView()
+  LEDSettingScreen()
 }
 
 // MARK: Widget
 
 extension LEDSettingScreen {
-  
   struct InputTextView: View {
-    
-    @State private var text: String = ""
-    
+    @Binding var text: String
+
     var body: some View {
       VStack(alignment: .leading) {
         Text("Input Message")
@@ -125,31 +125,54 @@ extension LEDSettingScreen {
           .fontDesign(.rounded)
           .fontWeight(.medium)
           .font(.title)
-        
+
         HStack {
-          TextField("Enter Message", text: $text)
+          TextField("", text: $text)
             .tint(.white)
+            .foregroundStyle(.white)
+            .font(.title2)
             .padding()
             .overlay {
-              RoundedRectangle(cornerRadius: 8)
-                .stroke(style: .init(lineWidth: 2))
-                .fill(.red)
+              ZStack(alignment: .leading) {
+                if text.isEmpty {
+                  Text("Enter Message")
+                    .foregroundStyle(.white.opacity(0.5))
+                    .font(.title2)
+                    .padding()
+                }
+
+                RoundedRectangle(cornerRadius: 12)
+                  .stroke(style: .init(lineWidth: 2))
+                  .fill(.white)
+              }
             }
-            
-          
+            .padding(.trailing, 12)
+
+          Button(
+            action: {
+              if text.isNotEmpty {
+                // TODO: 實作LED Screen
+              }
+            },
+            label: {
+              Image(systemName: "play.circle.fill")
+                .font(.largeTitle)
+                .foregroundStyle(.white)
+            }
+          )
+          .padding(.horizontal, 4)
         }
       }
-      .preferredColorScheme(.dark)
+      .padding(4)
     }
-    
   }
-  
-  struct ColorSelectedView: View {
-    var title: String
-    var datas: [Color]
-    var tap: NormalClosure<Color>
 
+  struct ColorSelectedView: View {
     @Binding var selectedColor: Color
+
+    var title: String
+    var colors: [Color]
+    var tap: NormalClosure<Color>
 
     var body: some View {
       VStack(alignment: .leading) {
@@ -158,10 +181,10 @@ extension LEDSettingScreen {
           .fontDesign(.rounded)
           .fontWeight(.medium)
           .font(.title)
-        
+
         ScrollView(.horizontal) {
           HStack {
-            ForEach(datas, id: \.self) { color in
+            ForEach(colors, id: \.self) { color in
               Circle()
                 .fill(color)
                 .frame(width: 44)
@@ -176,7 +199,7 @@ extension LEDSettingScreen {
                   tap(color)
                 }
             }
-            
+
             Spacer()
           }
           .padding(4)
@@ -186,14 +209,13 @@ extension LEDSettingScreen {
       .padding(4)
     }
   }
-  
+
   struct TextSizeSelectedView: View {
-    
     var datas: [CGFloat]
     var tap: NormalClosure<CGFloat>
-    
+
     @State private var selected: CGFloat = 100
-    
+
     var body: some View {
       VStack(alignment: .leading) {
         Text("Text Size")
@@ -223,7 +245,7 @@ extension LEDSettingScreen {
                 withAnimation {
                   selected = value
                 }
-                
+
                 tap(value)
               }
           }
