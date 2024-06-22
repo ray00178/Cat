@@ -9,15 +9,17 @@ import SwiftUI
 
 // Reference: https://youtu.be/DEhGTw_Z7Jc?si=6293AmvEnR8hQKQB
 struct LEDScreen: View {
+  @Environment(\.dismiss) var dismiss
   
   @State private var textWidth: CGFloat = .zero
   @State private var offsetX: CGFloat = .zero
-  
+
+  @Binding var text: String
   @Binding var fontColor: Color
   @Binding var fontSize: CGFloat
   @Binding var background: Color
   @Binding var duration: Double
-  
+
   var body: some View {
     ZStack {
       GeometryReader { geo in
@@ -29,7 +31,7 @@ struct LEDScreen: View {
           .foregroundStyle(background.opacity(0.6))
 
         // 屬性順序重要
-        Text("休假中 有事不要找我")
+        Text(text)
           .font(.system(size: fontSize))
           .fontDesign(.monospaced)
           .fontWeight(.bold)
@@ -67,14 +69,26 @@ struct LEDScreen: View {
           }
       }
     }
-    .background(.black)
+    .overlay(alignment: .bottomTrailing) {
+      Button(action: {
+        dismiss()
+      }, label: {
+        Image(systemName: "xmark.circle.fill")
+          .padding([.bottom, .trailing], 20)
+          .font(.largeTitle)
+      })
+    }
     .ignoresSafeArea()
+    .background(.black)
   }
 }
 
 #Preview {
-  LEDScreen(fontColor: .constant(.yellow),
-            fontSize: .constant(200),
-            background: .constant(.green),
-            duration: .constant(5))
+  LEDScreen(
+    text: .constant("SwiftUI"),
+    fontColor: .constant(.yellow),
+    fontSize: .constant(200),
+    background: .constant(.green),
+    duration: .constant(5)
+  )
 }

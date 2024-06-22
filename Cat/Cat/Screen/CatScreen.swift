@@ -60,7 +60,7 @@ struct CatScreen: View {
         .overlay(alignment: .bottom) {
           if isLoading {
             LoadingView()
-              .offset(y: (20 + 40) / 2)
+              .offset(y: 24)
           }
         }
         .padding(.bottom, 40)

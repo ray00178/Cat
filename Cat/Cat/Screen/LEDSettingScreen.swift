@@ -20,11 +20,10 @@ struct LEDSettingScreen: View {
   ]
 
   @State private var text: String = ""
-  @State private var textWidth: CGFloat = .zero
-  @State private var offsetX: CGFloat = .zero
   @State private var fontSize: CGFloat = 100
   @State private var selectedTextColor: Color = .red
   @State private var selectedBackgroundColor: Color = .blue
+  @State private var start: Bool = false
 
   var body: some View {
     VStack {
@@ -44,19 +43,8 @@ struct LEDSettingScreen: View {
             .fontDesign(.monospaced)
             .fontWeight(.bold)
             .foregroundStyle(selectedTextColor)
-            .fixedSize()
-            .background {
-              GeometryReader { textGeo -> Color in
-                DispatchQueue.main.async {
-                  let textWidth = textGeo.size.width
-                  offsetX = abs(geo.size.width - textWidth) / 2
-                }
-
-                return Color.clear
-              }
-            }
-            // .offset(x: offsetX)
-            .position(y: geo.size.height / 2)
+            .lineLimit(2)
+            .frame(width: geo.size.width, height: geo.size.height)
             .mask {
               Image(.led)
                 .renderingMode(.template)
@@ -71,7 +59,7 @@ struct LEDSettingScreen: View {
 
       ScrollView {
         VStack(spacing: 8) {
-          InputTextView(text: $text)
+          InputTextView(text: $text, start: $start)
 
           ColorSelectedView(
             selectedColor: $selectedTextColor,
@@ -104,7 +92,15 @@ struct LEDSettingScreen: View {
       }
     }
     .background(.black)
-    .ignoresSafeArea()
+    .ignoresSafeArea(edges: .top)
+    .fullScreenCover(isPresented: $start, content: {
+      LEDScreen(
+        text: $text,
+        fontColor: $selectedTextColor,
+        fontSize: $fontSize,
+        background: $selectedBackgroundColor,
+        duration: .constant(5))
+    })
   }
 }
 
@@ -115,29 +111,31 @@ struct LEDSettingScreen: View {
 // MARK: Widget
 
 extension LEDSettingScreen {
+  
   struct InputTextView: View {
     @Binding var text: String
-
+    @Binding var start: Bool
+    
     var body: some View {
       VStack(alignment: .leading) {
         Text("Input Message")
           .foregroundStyle(.white)
           .fontDesign(.rounded)
           .fontWeight(.medium)
-          .font(.title)
+          .font(.title2)
 
         HStack {
           TextField("", text: $text)
             .tint(.white)
             .foregroundStyle(.white)
-            .font(.title2)
+            .font(.title3)
             .padding()
             .overlay {
               ZStack(alignment: .leading) {
                 if text.isEmpty {
                   Text("Enter Message")
                     .foregroundStyle(.white.opacity(0.5))
-                    .font(.title2)
+                    .font(.title3)
                     .padding()
                 }
 
@@ -151,7 +149,7 @@ extension LEDSettingScreen {
           Button(
             action: {
               if text.isNotEmpty {
-                // TODO: 實作LED Screen
+                start.toggle()
               }
             },
             label: {
@@ -180,7 +178,7 @@ extension LEDSettingScreen {
           .foregroundStyle(.white)
           .fontDesign(.rounded)
           .fontWeight(.medium)
-          .font(.title)
+          .font(.title2)
 
         ScrollView(.horizontal) {
           HStack {
@@ -222,7 +220,7 @@ extension LEDSettingScreen {
           .foregroundStyle(.white)
           .fontDesign(.rounded)
           .fontWeight(.medium)
-          .font(.title)
+          .font(.title2)
 
         HStack {
           ForEach(datas, id: \.self) { value in
@@ -255,6 +253,7 @@ extension LEDSettingScreen {
       }
       .frame(maxWidth: .infinity)
       .padding(8)
+      .padding(.bottom, 8)
     }
   }
 }
