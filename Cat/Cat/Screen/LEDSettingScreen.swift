@@ -170,7 +170,7 @@ extension LEDSettingScreen {
 
     var title: String
     var colors: [Color]
-    var tap: NormalClosure<Color>
+    var tap: DataClosure<Color>
 
     var body: some View {
       VStack(alignment: .leading) {
@@ -210,7 +210,7 @@ extension LEDSettingScreen {
 
   struct TextSizeSelectedView: View {
     var datas: [CGFloat]
-    var tap: NormalClosure<CGFloat>
+    var tap: DataClosure<CGFloat>
 
     @State private var selected: CGFloat = 100
 

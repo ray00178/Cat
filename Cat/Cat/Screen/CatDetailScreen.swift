@@ -7,15 +7,18 @@
 
 import SwiftUI
 
+// MARK: - CatDetailScreen
+
 struct CatDetailScreen: View {
+  @EnvironmentObject private var apiManager: APIManager
   @Environment(\.dismiss) var dismiss
 
   @Binding var path: NavigationPath
-
   @State private var progressW: Double = 0.0
-
   @State private var progressH: Double = 0.0
-
+  @State private var start: Bool = false
+  @State private var image: Image?
+  
   var catImage: CatImage
 
   init(path: Binding<NavigationPath>, catImage: CatImage) {
@@ -27,13 +30,21 @@ struct CatDetailScreen: View {
     ScrollView {
       VStack(alignment: .leading) {
         CatAsyanImageView(url: catImage.url)
-          .clipShape(RoundedRectangle(cornerRadius: 12.0))
-          .padding(.vertical, 12)
-
+        .clipShape(RoundedRectangle(cornerRadius: 12.0))
+        .padding(.vertical, 12)
+        .onTapGesture {
+          start.toggle()
+        }
+        .fullScreenCover(isPresented: $start, content: {
+          if let image {
+            ScaleImageScreen(image: image)
+          }
+        })
+        
         Text(catImage.imageId ?? "None")
           .font(.largeTitle)
           .fontDesign(.rounded)
-
+          
         HStack(spacing: 20) {
           VStack {
             Label {
@@ -64,7 +75,7 @@ struct CatDetailScreen: View {
           }
 
           Spacer()
-          
+
           VStack {
             Label {
               Text("Height \(catImage.height)")
@@ -92,39 +103,6 @@ struct CatDetailScreen: View {
             }
           }
         }
-
-        /* Text(catImage.imageId ?? "imageId")
-         .font(.largeTitle)
-         .fontDesign(.monospaced)
-         .foregroundStyle(.pink)
-         .frame(width: 200)
-         .navigationDestination(for: String.self) { value in
-           Text(value)
-             .font(.headline)
-             .background {
-               LinearGradient(colors: [.red, .purple, .yellow],
-                              startPoint: .leading,
-                              endPoint: .trailing)
-             }
-             .toolbar {
-               // Use .principal
-               // In iOS, iPadOS, and tvOS, the system places the principal item in the center of the navigation bar. This item takes precedent over a title specified through View/navigationTitle.
-               ToolbarItem(placement: .principal) {
-                 Text("Cat Detail")
-                   .foregroundStyle(.white)
-                   .font(.system(size: 12, weight: .bold))
-                   .padding(10)
-                   .background(
-                     RoundedRectangle(cornerRadius: 5)
-                       .foregroundStyle(.c050505)
-                   )
-                   .shadow(radius: 5)
-               }
-             }
-         }
-         .onTapGesture {
-           path.append("Hello Already")
-         } */
       }
       .padding(16)
     }
@@ -133,6 +111,17 @@ struct CatDetailScreen: View {
     .navigationTitle("Cat Detail")
     .onAppear {
       calcProgress()
+      
+      Task {
+        if let url = catImage.url?.absoluteString,
+           let data = await apiManager.fetchData(from: url),
+           data.count != 0,
+           let uiImage = UIImage(data: data)
+        {
+          image = Image(uiImage: uiImage)
+          print("image \(String(describing: image))")
+        }
+      }
     }
   }
 }
@@ -140,12 +129,11 @@ struct CatDetailScreen: View {
 // MARK: - Private Function
 
 extension CatDetailScreen {
-  
   /// 計算進度值
   private func calcProgress() {
     let w: Int = catImage.width
     let h: Int = catImage.height
-    
+
     if w > h {
       progressW = 1.0
       progressH = Double(h) / Double(w)
@@ -159,12 +147,14 @@ extension CatDetailScreen {
       progressH = 1.0
     }
   }
-  
 }
 
 #Preview {
   NavigationStack {
-    CatDetailScreen(path: .constant(.init()), catImage: CatImage.mockData()[0])
-      .environmentObject(APIManager.shared)
+    CatDetailScreen(
+      path: .constant(.init()),
+      catImage: CatImage.mockData()[0]
+    )
+    .environmentObject(APIManager.shared)
   }
 }

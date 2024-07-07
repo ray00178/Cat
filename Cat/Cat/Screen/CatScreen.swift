@@ -47,13 +47,21 @@ struct CatScreen: View {
                 }
               )
             case .average:
-              CatBottomView(cats: cat.images) { image in
-                path.append(image)
-              }
+              CatBottomView(cats: cat.images, onPress: { catImage in
+                path.append(catImage)
+              }, didPhotoSaveSuccess: { _ in
+                showAlert.toggle()
+              })
             case .right:
-              CatRightView(cats: cat.images) { image in
-                path.append(image)
-              }
+              CatRightView(
+                cats: cat.images,
+                onPress: { catImage in
+                  path.append(catImage)
+                },
+                didPhotoSaveSuccess: { _ in
+                  showAlert.toggle()
+                }
+              )
             }
           }
         }

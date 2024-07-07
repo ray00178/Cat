@@ -9,7 +9,17 @@ import SwiftUI
 
 struct WeatherScreen: View {
   var body: some View {
-    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    ScrollView {
+      ForEach(0 ..< 20) { index in
+        Text("\(index)")
+          .font(.largeTitle)
+          .fontDesign(.monospaced)
+
+        Divider()
+      }
+      .background(.cyan)
+    }
+    //.background(.red.opacity(0.5))
   }
 }
 

@@ -17,9 +17,9 @@ import SwiftUI
 struct CatLeftView: View {
   var cats: [CatImage] = .empty
 
-  var onPress: NormalClosure<CatImage>?
+  var onPress: DataClosure<CatImage>?
 
-  var didPhotoSaveSuccess: NormalClosure<Image>?
+  var didPhotoSaveSuccess: DataClosure<Image>?
 
   var body: some View {
     let cat = cats.first

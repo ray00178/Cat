@@ -12,6 +12,10 @@ struct CatApp: App {
   @State private var starLaunch: Bool = true
   @State private var showing: Bool = true
   
+  init() {
+    UITabBar.appearance().backgroundColor = .white
+  }
+  
   var body: some Scene {
     WindowGroup {
       ZStack {
@@ -43,4 +47,4 @@ struct CatApp: App {
 
 typealias EmptyClosure = () -> Swift.Void
 
-typealias NormalClosure<T> = (T) -> Swift.Void
+typealias DataClosure<T> = (T) -> Swift.Void

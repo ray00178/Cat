@@ -5,13 +5,14 @@
 //  Created by Ray on 2024/5/1.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 extension View {
   
   /// Any View convert to UIImage
   /// Reference: https://pse.is/5vuxhm
+  @MainActor
   func snapshot() -> UIImage {
     let controller = UIHostingController(rootView: self)
     let view = controller.view
@@ -21,7 +22,7 @@ extension View {
     view?.backgroundColor = .clear
 
     let renderer = UIGraphicsImageRenderer(size: targetSize)
-    
+
     return renderer.image { _ in
       view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
     }

@@ -13,13 +13,14 @@ import UIKit
 struct CatAsyanImageView: View {
   @EnvironmentObject private var apiManager: APIManager
 
+  @State private var start: Bool = false
   @State private var image: Image?
 
   /// Resource
   var url: URL?
   
   /// When photo save to library success
-  var didPhotoSaveSuccess: NormalClosure<Image>?
+  var didPhotoSaveSuccess: DataClosure<Image>?
   
   var body: some View {
     AsyncImage(url: url, transaction: .init(animation: .bouncy)) { phase in
