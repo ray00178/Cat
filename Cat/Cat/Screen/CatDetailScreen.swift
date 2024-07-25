@@ -119,7 +119,6 @@ struct CatDetailScreen: View {
            let uiImage = UIImage(data: data)
         {
           image = Image(uiImage: uiImage)
-          print("image \(String(describing: image))")
         }
       }
     }

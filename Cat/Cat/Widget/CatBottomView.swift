@@ -12,15 +12,13 @@ struct CatBottomView: View {
 
   var onPress: ((CatImage) -> Swift.Void)?
 
-  var didPhotoSaveSuccess: DataClosure<Image>?
+  var savePhoto: DataClosure<Image>?
 
   var body: some View {
     Grid(horizontalSpacing: 1) {
       GridRow {
         ForEach(cats) { cat in
-          CatAsyanImageView(url: cat.url, didPhotoSaveSuccess: { image in
-            didPhotoSaveSuccess?(image)
-          })
+          CatAsyanImageView(url: cat.url, savePhoto: savePhoto)
           .onTapGesture {
             onPress?(cat)
           }

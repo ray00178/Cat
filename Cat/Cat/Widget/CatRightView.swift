@@ -12,7 +12,7 @@ struct CatRightView: View {
 
   var onPress: ((CatImage) -> Swift.Void)?
 
-  var didPhotoSaveSuccess: DataClosure<Image>?
+  var savePhoto: DataClosure<Image>?
 
   var body: some View {
     let cat = cats.last
@@ -22,18 +22,14 @@ struct CatRightView: View {
       GridRow {
         Grid(verticalSpacing: 1) {
           ForEach(urls) { cat in
-            CatAsyanImageView(url: cat.url, didPhotoSaveSuccess: { image in
-              didPhotoSaveSuccess?(image)
-            })
+            CatAsyanImageView(url: cat.url, savePhoto: savePhoto)
             .onTapGesture {
               onPress?(cat)
             }
           }
         }
 
-        CatAsyanImageView(url: cat?.url, didPhotoSaveSuccess: { image in
-          didPhotoSaveSuccess?(image)
-        })
+        CatAsyanImageView(url: cat?.url, savePhoto: savePhoto)
         .gridCellColumns(2)
         .onTapGesture {
           if let cat {

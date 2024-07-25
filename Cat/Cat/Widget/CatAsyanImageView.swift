@@ -10,7 +10,9 @@ import UIKit
 
 // MARK: - CatAsyanImageView
 
+// Reference: https://matteomanferdini.com/swiftui-asyncimage/
 struct CatAsyanImageView: View {
+  
   @EnvironmentObject private var apiManager: APIManager
 
   @State private var start: Bool = false
@@ -19,8 +21,8 @@ struct CatAsyanImageView: View {
   /// Resource
   var url: URL?
   
-  /// When photo save to library success
-  var didPhotoSaveSuccess: DataClosure<Image>?
+  /// Save Photo
+  var savePhoto: DataClosure<Image>?
   
   var body: some View {
     AsyncImage(url: url, transaction: .init(animation: .bouncy)) { phase in
@@ -38,6 +40,9 @@ struct CatAsyanImageView: View {
           .resizable()
           .aspectRatio(1, contentMode: .fit)
           .transition(.opacity)
+          .onAppear {
+            self.image = image
+          }
       @unknown default:
         EmptyView()
       }
@@ -49,7 +54,7 @@ struct CatAsyanImageView: View {
         }
 
         Button {
-          didPhotoSaveSuccess?(image)
+          savePhoto?(image)
         } label: {
           Label("Save Photo", systemImage: "square.and.arrow.down")
         }
@@ -61,7 +66,7 @@ struct CatAsyanImageView: View {
         }
       }
     }
-    .onAppear {
+    /*.onAppear {
       Task {
         if let url = url?.absoluteString,
            let data = await apiManager.fetchData(from: url),
@@ -71,7 +76,7 @@ struct CatAsyanImageView: View {
           image = Image(uiImage: uiImage)
         }
       }
-    }
+    }*/
   }
 }
 

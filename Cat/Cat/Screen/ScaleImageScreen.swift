@@ -7,11 +7,12 @@
 
 import SwiftUI
 
+// MARK: - ScaleImageScreen
+
 // Reference: https://www.hackingwithswift.com/books/ios-swiftui/how-to-use-gestures-in-swiftui
 struct ScaleImageScreen: View {
   @Environment(\.dismiss) var dismiss
-  
-  @State private var isDragging: Bool = false
+
   @State private var offset: CGSize = .zero
 
   @State private var scale: CGFloat = 1.0
@@ -19,6 +20,10 @@ struct ScaleImageScreen: View {
 
   @State private var rotate = Angle.zero
   @State private var finalRotate = Angle.zero
+
+  @GestureState private var dragState: CGSize = .zero
+
+  @State private var imageSize: CGSize = .zero
 
   var image: Image?
 
@@ -32,15 +37,12 @@ struct ScaleImageScreen: View {
         scale = 1.0
 
         if finalScale < 1 {
-          withAnimation(.smooth()) {
+          withAnimation(.bouncy(duration: 0.5)) {
             finalScale = 1.0
             scale = 1.0
+            offset = .zero
           }
         }
-
-        isDragging = finalScale > 1.0
-
-        print("When scale change, isDragging = \(isDragging)")
       }
 
     let rotateGesture = RotateGesture()
@@ -53,51 +55,83 @@ struct ScaleImageScreen: View {
         }
       }
 
-    // coordinateSpace default = .local 表示
-    let dragGesture = DragGesture(coordinateSpace: .global)
+    // coordinateSpace default = .local 表示僅視圖的座標
+    let dragGesture = DragGesture(coordinateSpace: .local)
+//      .updating($dragState, body: { value, state, _ in
+//        state = value.translation
+//      })
       .onChanged { value in
-        print("dragGesture change = \(value.translation)")
-        guard isDragging else { return }
-
+        
+        print("dragGesture = \(value.translation) ; \(value.startLocation)")
         offset = value.translation
-//        if scale * finalScale > 1 {
-//          offset = value.translation
-//        }
       }
       .onEnded { _ in
-        guard isDragging else { return }
-
-        withAnimation(.spring) {
-          offset = .zero
+        withAnimation(.bouncy(duration: 0.5)) {
+          if finalScale == 1 {
+            offset = .zero
+          } else {
+            
+          }
         }
       }
-    let combine = SimultaneousGesture(
-      dragGesture,
-      SimultaneousGesture(magnifyGesture, rotateGesture)
-    )
 
-    ZStack(alignment: .center) {
+    GeometryReader { proxy in
       if let image {
         image
           .resizable()
           .scaledToFit()
-          .offset(offset)
           .scaleEffect(scale * finalScale)
-          .rotationEffect(rotate)
+          .offset(offset)
+          // .rotationEffect(rotate)
           .gesture(dragGesture)
           .gesture(SimultaneousGesture(magnifyGesture, rotateGesture))
+      } else {
+        Image(.temple)
+          .resizable()
+          .scaledToFit()
+          .scaleEffect(scale * finalScale, anchor: .leading)
+        // .offset(dragState)
+          .offset(offset)
+          // .rotationEffect(rotate)
+          .gesture(dragGesture)
+          .gesture(SimultaneousGesture(magnifyGesture, rotateGesture))
+          .onTapGesture(count: 2) { location in
+            print("tap location = \(location)")
+
+            withAnimation {
+              if finalScale > 1 {
+                finalScale = 1
+
+                offset = .zero
+              } else {
+                let imageH: CGFloat = imageSize.height
+                let screenH: CGFloat = proxy.frame(in: .global).height
+                finalScale = screenH / imageH
+                
+                offset = CGSize(width: .zero, height: 100)
+              }
+            }
+          }
+          .background {
+            GeometryReader { proxy in
+              Color.clear.preference(key: ViewSizePreferenceKey.self, value: proxy.size)
+            }
+          }
+          .onPreferenceChange(ViewSizePreferenceKey.self) { size in
+            imageSize = size
+          }
       }
     }
-    .overlay(alignment: .bottomTrailing) {
-      Button(action: {
-        dismiss()
-      }, label: {
-        Image(systemName: "xmark.circle.fill")
-          .padding([.bottom, .trailing], 20)
-          .font(.largeTitle)
-      })
-    }
+    .ignoresSafeArea()
   }
+}
+
+// MARK: - ViewSizePreferenceKey
+
+struct ViewSizePreferenceKey: PreferenceKey {
+  static var defaultValue: CGSize = .zero
+
+  static func reduce(value _: inout CGSize, nextValue _: () -> CGSize) {}
 }
 
 #Preview {

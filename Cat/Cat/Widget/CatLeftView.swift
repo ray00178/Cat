@@ -19,7 +19,7 @@ struct CatLeftView: View {
 
   var onPress: DataClosure<CatImage>?
 
-  var didPhotoSaveSuccess: DataClosure<Image>?
+  var savePhoto: DataClosure<Image>?
 
   var body: some View {
     let cat = cats.first
@@ -27,9 +27,7 @@ struct CatLeftView: View {
 
     Grid(horizontalSpacing: 1) {
       GridRow {
-        CatAsyanImageView(url: cat?.url, didPhotoSaveSuccess: { image in
-          didPhotoSaveSuccess?(image)
-        })
+        CatAsyanImageView(url: cat?.url, savePhoto: savePhoto)
         .gridCellColumns(2)
         .onTapGesture {
           if let cat {
@@ -39,9 +37,7 @@ struct CatLeftView: View {
 
         Grid(verticalSpacing: 1) {
           ForEach(urls) { cat in
-            CatAsyanImageView(url: cat.url, didPhotoSaveSuccess: { image in
-              didPhotoSaveSuccess?(image)
-            })
+            CatAsyanImageView(url: cat.url, savePhoto: savePhoto)
             .onTapGesture {
               onPress?(cat)
             }

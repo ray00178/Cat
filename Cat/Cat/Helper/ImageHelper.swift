@@ -6,12 +6,24 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ImageHelper: NSObject {
   
+  static let shared: ImageHelper = .init()
+  
+  private override init() {}
+  
   var didCompleted: EmptyClosure?
   
-  public func savePhoto(uiImage: UIImage) {
+  @MainActor 
+  public func savePhoto(image: Image?) {
+    guard let uiImage = ImageRenderer(content: image).uiImage
+    else {
+      print("Save Failure UIImage is Nil")
+      return
+    }
+    
     UIImageWriteToSavedPhotosAlbum(
       uiImage,
       self,

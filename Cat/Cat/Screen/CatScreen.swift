@@ -25,78 +25,73 @@ struct CatScreen: View {
 
   var body: some View {
     NavigationStack(path: $path) {
-      ScrollView(.vertical) {
-        LazyVStack(spacing: 1) {
-          ForEach(cats) { cat in
-            switch cat.layout {
-            case .left:
-              CatLeftView(
-                cats: cat.images,
-                onPress: { catImage in
+      if cats.isEmpty {
+        Text("🥺 Try again later")
+          .bold()
+          .fontDesign(.rounded)
+          .font(.largeTitle)
+      } else {
+        ScrollView(.vertical) {
+          LazyVStack(spacing: 1) {
+            ForEach(cats) { cat in
+              switch cat.layout {
+              case .left:
+                CatLeftView(cats: cat.images, onPress: { catImage in
                   path.append(catImage)
                 },
-                didPhotoSaveSuccess: { _ in
-                  showAlert.toggle()
-//                  let helper = ImageHelper()
-//                  helper.didCompleted = {
-//                    showAlert.toggle()
-//                    print("showAlert = \(showAlert)")
-//                  }
-//
-//                  helper.savePhoto(uiImage: image.snapshot())
-                }
-              )
-            case .average:
-              CatBottomView(cats: cat.images, onPress: { catImage in
-                path.append(catImage)
-              }, didPhotoSaveSuccess: { _ in
-                showAlert.toggle()
-              })
-            case .right:
-              CatRightView(
-                cats: cat.images,
-                onPress: { catImage in
+                savePhoto: { image in
+                  savePhotoToLibrary(image: image)
+                })
+              case .average:
+                CatBottomView(cats: cat.images, onPress: { catImage in
                   path.append(catImage)
                 },
-                didPhotoSaveSuccess: { _ in
-                  showAlert.toggle()
-                }
-              )
+                savePhoto: { image in
+                  savePhotoToLibrary(image: image)
+                })
+              case .right:
+                CatRightView(cats: cat.images, onPress: { catImage in
+                  path.append(catImage)
+                },
+                savePhoto: { image in
+                  savePhotoToLibrary(image: image)
+                })
+              }
+            }
+          }
+          .overlay(alignment: .bottom) {
+            if isLoading {
+              LoadingView()
+                .offset(y: 24)
+            }
+          }
+          .padding(.bottom, 40)
+          .scrollTargetLayout()
+        }
+        .scrollPosition(id: $activcImageId, anchor: .bottomTrailing)
+        .onChange(of: activcImageId) { _, newValue in
+          if newValue == lastImageId, isLoading == false {
+            Task {
+              page += 1
+              await fetch(page: page)
             }
           }
         }
-        .overlay(alignment: .bottom) {
-          if isLoading {
-            LoadingView()
-              .offset(y: 24)
-          }
+        .refreshable {
+          page = 0
+          cats.removeAll()
+          await fetch(page: page)
         }
-        .padding(.bottom, 40)
-        .scrollTargetLayout()
-      }
-      .scrollPosition(id: $activcImageId, anchor: .bottomTrailing)
-      .onChange(of: activcImageId) { _, newValue in
-        if newValue == lastImageId, isLoading == false {
-          Task {
-            page += 1
-            await fetch(page: page)
-          }
+        .navigationTitle("Cat Every Day")
+        .navigationDestination(for: CatImage.self) { animal in
+          CatDetailScreen(path: $path, catImage: animal)
         }
-      }
-      .refreshable {
-        page = 0
-        cats.removeAll()
-        await fetch(page: page)
-      }
-      .navigationTitle("Cat Every Day")
-      .navigationDestination(for: CatImage.self) { animal in
-        CatDetailScreen(path: $path, catImage: animal)
-      }
-      .toolbar {
-        ToolbarItem(placement: .topBarTrailing) {
-          Button(action: {}, label: {
-            Image(systemName: "cat.fill")
-          })
+        .toolbar {
+          ToolbarItem(placement: .topBarTrailing) {
+            Button(action: {}, label: {
+              Image(systemName: "cat.fill")
+            })
+          }
         }
       }
     }
@@ -159,6 +154,15 @@ struct CatScreen: View {
     lastImageId = cats.last?.id
 
     isLoading = false
+  }
+
+  private func savePhotoToLibrary(image: Image) {
+    #warning("Need to factor")
+    ImageHelper.shared.didCompleted = {
+      showAlert.toggle()
+    }
+    
+    ImageHelper.shared.savePhoto(image: image)
   }
 }
 
