@@ -20,7 +20,7 @@ struct CatScreen: View {
   @State private var isLoading: Bool = true
   @State private var path: NavigationPath = .init()
 
-  @State private var showAlert: Bool = false
+  @State private var alertStatus: ImageHelper.Status?
   @State private var animation: Bool = false
 
   var body: some View {
@@ -101,8 +101,13 @@ struct CatScreen: View {
       await fetch(page: page)
     }
     .overlay(alignment: .center) {
-      if showAlert {
+      switch alertStatus {
+      case .success:
         successAlert()
+      case .failure(let message):
+        EmptyView()
+      case nil:
+        EmptyView()
       }
     }
   }
@@ -138,7 +143,7 @@ struct CatScreen: View {
       }
 
       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        showAlert.toggle()
+        alertStatus = nil
       }
     }
     .onDisappear {
@@ -157,9 +162,8 @@ struct CatScreen: View {
   }
 
   private func savePhotoToLibrary(image: Image) {
-    #warning("Need to factor")
-    ImageHelper.shared.didCompleted = {
-      showAlert.toggle()
+    ImageHelper.shared.didCompleted = { status in
+      self.alertStatus = status
     }
     
     ImageHelper.shared.savePhoto(image: image)

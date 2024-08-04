@@ -30,8 +30,13 @@
 		717070202BD42EA200EB5F03 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170701F2BD42EA200EB5F03 /* LoadingView.swift */; };
 		7173E4342C3A41B6003E084F /* TabPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173E4332C3A41B6003E084F /* TabPreferenceKey.swift */; };
 		7173E4362C50BC0E003E084F /* ParallaxImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173E4352C50BC0E003E084F /* ParallaxImageScreen.swift */; };
+		7173E43A2C55436E003E084F /* ButtonsViewOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173E4392C55436E003E084F /* ButtonsViewOffset.swift */; };
+		7173E43C2C5543F1003E084F /* ButtonsViewPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7173E43B2C5543F1003E084F /* ButtonsViewPosition.swift */; };
 		7180192E2BE1C75A00038740 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7180192D2BE1C75A00038740 /* ImageHelper.swift */; };
 		718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718019342BEFDD1C00038740 /* ScaleImageScreen.swift */; };
+		719EA0302C5DBA3C006D658D /* ZoomableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA02F2C5DBA3C006D658D /* ZoomableContainer.swift */; };
+		719EA0372C5F555D006D658D /* CircleAvtorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA0362C5F555D006D658D /* CircleAvtorView.swift */; };
+		719EA0392C5F583C006D658D /* GlowTextScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA0382C5F583C006D658D /* GlowTextScreen.swift */; };
 		71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */; };
 		71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C542BE1C27E002AAB26 /* View+Extension.swift */; };
 		71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */; };
@@ -65,9 +70,14 @@
 		7170701F2BD42EA200EB5F03 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7173E4332C3A41B6003E084F /* TabPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPreferenceKey.swift; sourceTree = "<group>"; };
 		7173E4352C50BC0E003E084F /* ParallaxImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxImageScreen.swift; sourceTree = "<group>"; };
+		7173E4392C55436E003E084F /* ButtonsViewOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsViewOffset.swift; sourceTree = "<group>"; };
+		7173E43B2C5543F1003E084F /* ButtonsViewPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsViewPosition.swift; sourceTree = "<group>"; };
 		7180192D2BE1C75A00038740 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		718019322BE2928500038740 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718019342BEFDD1C00038740 /* ScaleImageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleImageScreen.swift; sourceTree = "<group>"; };
+		719EA02F2C5DBA3C006D658D /* ZoomableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableContainer.swift; sourceTree = "<group>"; };
+		719EA0362C5F555D006D658D /* CircleAvtorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAvtorView.swift; sourceTree = "<group>"; };
+		719EA0382C5F583C006D658D /* GlowTextScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowTextScreen.swift; sourceTree = "<group>"; };
 		71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreen.swift; sourceTree = "<group>"; };
 		71D32C542BE1C27E002AAB26 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDScreen.swift; sourceTree = "<group>"; };
@@ -145,16 +155,16 @@
 		71706FFF2BCA5BC700EB5F03 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				719EA0352C5F54EC006D658D /* Cat */,
+				719EA0312C5F54C5006D658D /* LED */,
 				71706FEA2BCA5B8900EB5F03 /* AppScreen.swift */,
-				717070152BCA5C2D00EB5F03 /* CatScreen.swift */,
-				717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */,
 				7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */,
 				71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */,
 				718019342BEFDD1C00038740 /* ScaleImageScreen.swift */,
-				71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */,
-				71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */,
 				71F8CCFA2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift */,
 				7173E4352C50BC0E003E084F /* ParallaxImageScreen.swift */,
+				719EA0362C5F555D006D658D /* CircleAvtorView.swift */,
+				719EA0382C5F583C006D658D /* GlowTextScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -167,6 +177,9 @@
 				717070062BCA5BEC00EB5F03 /* CatLeftView.swift */,
 				717070032BCA5BEC00EB5F03 /* CatRightView.swift */,
 				7170701F2BD42EA200EB5F03 /* LoadingView.swift */,
+				7173E4392C55436E003E084F /* ButtonsViewOffset.swift */,
+				7173E43B2C5543F1003E084F /* ButtonsViewPosition.swift */,
+				719EA02F2C5DBA3C006D658D /* ZoomableContainer.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -204,6 +217,24 @@
 				7180192D2BE1C75A00038740 /* ImageHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		719EA0312C5F54C5006D658D /* LED */ = {
+			isa = PBXGroup;
+			children = (
+				71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */,
+				71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */,
+			);
+			name = LED;
+			sourceTree = "<group>";
+		};
+		719EA0352C5F54EC006D658D /* Cat */ = {
+			isa = PBXGroup;
+			children = (
+				717070152BCA5C2D00EB5F03 /* CatScreen.swift */,
+				717070172BCA6DAC00EB5F03 /* CatDetailScreen.swift */,
+			);
+			name = Cat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,9 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7173E43C2C5543F1003E084F /* ButtonsViewPosition.swift in Sources */,
 				7173E4362C50BC0E003E084F /* ParallaxImageScreen.swift in Sources */,
 				718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */,
+				719EA0392C5F583C006D658D /* GlowTextScreen.swift in Sources */,
 				7170700A2BCA5BEC00EB5F03 /* CatLeftView.swift in Sources */,
+				719EA0372C5F555D006D658D /* CircleAvtorView.swift in Sources */,
 				717070142BCA5C1500EB5F03 /* APISecret.swift in Sources */,
 				717070162BCA5C2D00EB5F03 /* CatScreen.swift in Sources */,
 				71706FEB2BCA5B8900EB5F03 /* AppScreen.swift in Sources */,
@@ -294,6 +328,7 @@
 				71706FFC2BCA5BBE00EB5F03 /* Array+Extension.swift in Sources */,
 				717070132BCA5C1500EB5F03 /* APIRequest.swift in Sources */,
 				7170701C2BCD7B4F00EB5F03 /* LaunchScreen.swift in Sources */,
+				719EA0302C5DBA3C006D658D /* ZoomableContainer.swift in Sources */,
 				717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */,
 				71706FFE2BCA5BBE00EB5F03 /* Dictionary+Extension.swift in Sources */,
 				717070082BCA5BEC00EB5F03 /* CatBottomView.swift in Sources */,
@@ -301,6 +336,7 @@
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,
 				717070092BCA5BEC00EB5F03 /* CatAsyanImageView.swift in Sources */,
 				71F8CCFB2C0ABD0B00B5D00A /* FlipClockTextEffectScreen.swift in Sources */,
+				7173E43A2C55436E003E084F /* ButtonsViewOffset.swift in Sources */,
 				71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */,
 				71F8CCF92C023AD700B5D00A /* LEDSettingScreen.swift in Sources */,
 				717070072BCA5BEC00EB5F03 /* CatRightView.swift in Sources */,
