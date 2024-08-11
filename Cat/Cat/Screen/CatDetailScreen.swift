@@ -16,9 +16,11 @@ struct CatDetailScreen: View {
   @Binding var path: NavigationPath
   @State private var progressW: Double = 0.0
   @State private var progressH: Double = 0.0
+  @State private var isImageLoaded = false
   @State private var start: Bool = false
   @State private var image: Image?
-  
+  @State private var uiImage: UIImage?
+
   var catImage: CatImage
 
   init(path: Binding<NavigationPath>, catImage: CatImage) {
@@ -30,21 +32,29 @@ struct CatDetailScreen: View {
     ScrollView {
       VStack(alignment: .leading) {
         CatAsyanImageView(url: catImage.url)
-        .clipShape(RoundedRectangle(cornerRadius: 12.0))
-        .padding(.vertical, 12)
-        .onTapGesture {
-          start.toggle()
-        }
-        .fullScreenCover(isPresented: $start, content: {
-          if let image {
-            ScaleImageScreen(image: image)
+          .clipShape(RoundedRectangle(cornerRadius: 12.0))
+          .padding(.vertical, 12)
+          .onTapGesture {
+            if isImageLoaded {
+              start.toggle()
+            }
           }
-        })
-        
+          .fullScreenCover(isPresented: $start) {
+            #warning("待處理 UIImage always nil")
+            ZoomImageViewControllerWrapper(uiImage: UIImage(resource: .temple))
+              .ignoresSafeArea()
+            /* if let uiImage {
+               ZoomImageViewControllerWrapper(image: uiImage)
+                 .ignoresSafeArea()
+             } else {
+               let _ = print("uiImage = \(uiImage) ; \(image)")
+             } */
+          }
+
         Text(catImage.imageId ?? "None")
           .font(.largeTitle)
           .fontDesign(.rounded)
-          
+
         HStack(spacing: 20) {
           VStack {
             Label {
@@ -111,15 +121,24 @@ struct CatDetailScreen: View {
     .navigationTitle("Cat Detail")
     .onAppear {
       calcProgress()
-      
+
       Task {
-        if let url = catImage.url?.absoluteString,
-           let data = await apiManager.fetchData(from: url),
-           data.count != 0,
-           let uiImage = UIImage(data: data)
-        {
-          image = Image(uiImage: uiImage)
-        }
+        await loadImageData()
+      }
+    }
+  }
+
+  private func loadImageData() async {
+    if let url = catImage.url?.absoluteString,
+       let data = await apiManager.fetchData(from: url),
+       data.count != 0,
+       let value = UIImage(data: data)
+    {
+      await MainActor.run {
+        uiImage = value
+        print("uiImage = \(uiImage)")
+        image = Image(uiImage: value)
+        isImageLoaded = true
       }
     }
   }

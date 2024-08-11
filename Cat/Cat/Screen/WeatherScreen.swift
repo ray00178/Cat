@@ -8,18 +8,27 @@
 import SwiftUI
 
 struct WeatherScreen: View {
+  
+  @State private var start: Bool = false
+  
   var body: some View {
     ScrollView {
       ForEach(0 ..< 20) { index in
         Text("\(index)")
           .font(.largeTitle)
           .fontDesign(.monospaced)
+          .onTapGesture {
+            start.toggle()
+          }
+          .fullScreenCover(isPresented: $start) {
+            ZoomImageViewControllerWrapper(uiImage: UIImage(resource: .temple))
+              .ignoresSafeArea()
+          }
 
         Divider()
       }
       .background(.cyan)
     }
-    //.background(.red.opacity(0.5))
   }
 }
 

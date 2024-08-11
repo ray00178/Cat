@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference = https://x.com/sucodeee
-struct GlowTextScreen: View, Sendable {
+struct GlowTextScreen: View {
   
   @State private var index: Int = 0
   
@@ -26,6 +26,7 @@ struct GlowTextScreen: View, Sendable {
       .fontWeight(.light)
       .fontDesign(.rounded)
       .contentTransition(.numericText())
+      .foregroundStyle(colors[index])
       .frame(width: 250)
       .shadow(color: colors[index], radius: 5)
       .shadow(color: colors[index], radius: 5)
