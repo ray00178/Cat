@@ -41,10 +41,10 @@ struct CatDetailScreen: View {
           }
           .fullScreenCover(isPresented: $start) {
             #warning("待處理 UIImage always nil")
-            ZoomImageViewControllerWrapper(uiImage: UIImage(resource: .temple))
+            ZoomImageScreen(uiImage: UIImage(resource: .temple))
               .ignoresSafeArea()
             /* if let uiImage {
-               ZoomImageViewControllerWrapper(image: uiImage)
+               ZoomImageScreen(image: uiImage)
                  .ignoresSafeArea()
              } else {
                let _ = print("uiImage = \(uiImage) ; \(image)")

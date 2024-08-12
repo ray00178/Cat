@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-// MARK: - ZoomImageViewController
+// MARK: - ZoomImageScreen
 
 // Reference = https://developer.apple.com/tutorials/swiftui/interfacing-with-uikit/
 class ZoomImageViewController: UIViewController {
@@ -191,9 +191,9 @@ extension ZoomImageViewController: UIGestureRecognizerDelegate {
   }
 }
 
-// MARK: - ZoomImageViewControllerWrapper
+// MARK: - ZoomImageScreen
 
-struct ZoomImageViewControllerWrapper: UIViewControllerRepresentable {
+struct ZoomImageScreen: UIViewControllerRepresentable {
   @Environment(\.dismiss) var dismiss
   @State var uiImage: UIImage?
 
@@ -240,6 +240,6 @@ protocol ZoomImageVCDelagate: AnyObject {
 }
 
 #Preview {
-  ZoomImageViewControllerWrapper(uiImage: UIImage(resource: .temple))
+  ZoomImageScreen(uiImage: UIImage(resource: .temple))
     .ignoresSafeArea()
 }

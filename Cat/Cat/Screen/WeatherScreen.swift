@@ -21,7 +21,7 @@ struct WeatherScreen: View {
             start.toggle()
           }
           .fullScreenCover(isPresented: $start) {
-            ZoomImageViewControllerWrapper(uiImage: UIImage(resource: .temple))
+            ZoomImageScreen(uiImage: UIImage(resource: .temple))
               .ignoresSafeArea()
           }
 

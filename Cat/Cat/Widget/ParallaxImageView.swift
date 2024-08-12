@@ -1,5 +1,5 @@
 //
-//  ParallaxImageScreen.swift
+//  ParallaxImageView.swift
 //  Cat
 //
 //  Created by Ray on 2024/7/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference: https://x.com/AlbertMoral/status/1813288070906802492
-struct ParallaxImageScreen: View {
+struct ParallaxImageView: View {
   @State private var resources: [ImageResource] = [
     .image1Min, .image2Min, .image3Min,
   ]
@@ -45,5 +45,5 @@ struct ParallaxImageScreen: View {
 }
 
 #Preview {
-  ParallaxImageScreen()
+  ParallaxImageView()
 }
