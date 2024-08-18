@@ -5,7 +5,6 @@
 //  Created by Ray on 2024/5/25.
 //
 
-import OSLog
 import SwiftUI
 
 // MARK: - LEDSettingScreen

@@ -1,5 +1,5 @@
 //
-//  GlowTextView.swift
+//  GlowTextScreen.swift
 //  Cat
 //
 //  Created by Ray on 2024/8/4.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference = https://x.com/sucodeee
-struct GlowTextView: View, @unchecked Sendable {
+struct GlowTextScreen: View, @unchecked Sendable {
   
   @State private var index: Int = 0
   
@@ -44,5 +44,5 @@ struct GlowTextView: View, @unchecked Sendable {
 }
 
 #Preview {
-  GlowTextView()
+  GlowTextScreen()
 }

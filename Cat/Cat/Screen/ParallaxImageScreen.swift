@@ -1,5 +1,5 @@
 //
-//  ParallaxImageView.swift
+//  ParallaxImageScreen.swift
 //  Cat
 //
 //  Created by Ray on 2024/7/24.
@@ -8,13 +8,20 @@
 import SwiftUI
 
 // Reference: https://x.com/AlbertMoral/status/1813288070906802492
-struct ParallaxImageView: View {
+struct ParallaxImageScreen: View {
+  
+  @Binding var path: [Category]
+  
   @State private var resources: [ImageResource] = [
     .image1Min, .image2Min, .image3Min,
   ]
 
   @State private var position: CGPoint = .zero
 
+  init(path: Binding<[Category]>) {
+    _path = path
+  }
+  
   var body: some View {
     Text("Parallax")
       .foregroundStyle(.black.secondary)
@@ -41,9 +48,23 @@ struct ParallaxImageView: View {
     .frame(height: 200)
     .contentMargins(.horizontal, 20)
     .scrollIndicators(.hidden)
+    .navigationTitle("Parallax Image")
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationBarBackButtonHidden(true)
+    .toolbar {
+      ToolbarItem(placement: .topBarLeading) {
+        Button(action: {
+          path.removeLast()
+        }, label: {
+          Image(systemName: "arrow.left")
+            //.tint(.c374957)
+            .tint(.red)
+        })
+      }
+    }
   }
 }
 
 #Preview {
-  ParallaxImageView()
+  ParallaxImageScreen(path: .constant(.init()))
 }

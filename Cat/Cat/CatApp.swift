@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct CatApp: App {
+  
+  @UIApplicationDelegateAdaptor(Applegate.self) private var applegate
   @State private var starLaunch: Bool = true
   @State private var showing: Bool = true
   

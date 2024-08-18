@@ -1,5 +1,5 @@
 //
-//  CircleAvtorView.swift
+//  CircleAvtorScreen.swift
 //  Cat
 //
 //  Created by Ray on 2024/8/4.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference = https://x.com/sucodeee/status/1818977552188215482
-struct CircleAvtorView: View {
+struct CircleAvtorScreen: View {
   
   @State private var spin: Bool = false
   @State private var scale: Bool = false
@@ -56,6 +56,6 @@ struct CircleAvtorView: View {
 }
 
 #Preview {
-  CircleAvtorView()
+  CircleAvtorScreen()
     .preferredColorScheme(.dark)
 }
