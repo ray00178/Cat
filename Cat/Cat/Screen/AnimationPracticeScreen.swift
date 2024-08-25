@@ -43,7 +43,7 @@ struct AnimationPracticeScreen: View {
         }
       }
       .frame(maxHeight: 200)
-
+      
       Group {
         Circle()
           // 先執行顏色改變 [.animation 隱式動畫]

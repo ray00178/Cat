@@ -16,9 +16,11 @@ struct DemoScreen: View {
   @State private var scaleBool: Bool = false
   @State private var current: Category?
   @State private var path: [Category] = .empty
-
+  @State private var isPresent: Bool = false
+  
   private let categories: [Category] = [
     .parallaxImage, .circleAvtor, .glowText,
+    .animation
   ]
 
   private let screenW: CGFloat = UIScreen.main.bounds.width
@@ -37,7 +39,11 @@ struct DemoScreen: View {
           // id 如果沒有指定，則點擊事件會失效錯亂
           ForEach(categories, id: \.self) { category in
             DemoCard(category: category, wh: itemValue) {
-              path.append(category)
+              if category == .animation {
+                isPresent.toggle()
+              } else {
+                path.append(category)
+              }
             }
           }
         }
@@ -53,7 +59,12 @@ struct DemoScreen: View {
           CircleAvtorScreen(path: $path)
         case .glowText:
           GlowTextScreen()
+        case .animation:
+          EmptyView()
         }
+      }
+      .fullScreenCover(isPresented: $isPresent) {
+        AnimationPracticeScreen()
       }
     }
   }
@@ -136,6 +147,8 @@ enum Category: Identifiable, Hashable {
   case circleAvtor
 
   case glowText
+  
+  case animation
 
   var id: String {
     UUID().uuidString
@@ -149,6 +162,8 @@ enum Category: Identifiable, Hashable {
       "2024/08/04"
     case .glowText:
       "2024/08/04"
+    case .animation:
+      "2024/08/25"
     }
   }
 
@@ -160,12 +175,14 @@ enum Category: Identifiable, Hashable {
       "Circle Avtor"
     case .glowText:
       "Glow Text"
+    case .animation:
+      "Animation"
     }
   }
 
   var image: ImageResource {
     switch self {
-    case .parallaxImage:
+    case .parallaxImage, .animation:
       .image1Min
     case .circleAvtor:
       .image2Min
