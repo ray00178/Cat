@@ -18,7 +18,9 @@ class Applegate: NSObject, UIApplicationDelegate {
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .provisional, .sound, .badge]) { granted, error in
       guard let error else {
         if granted {
-          UIApplication.shared.registerForRemoteNotifications()
+          DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+          }
         }
         
         return

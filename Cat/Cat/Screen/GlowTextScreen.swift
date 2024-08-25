@@ -33,6 +33,10 @@ struct GlowTextScreen: View, @unchecked Sendable {
       .shadow(color: colors[index], radius: 50)
       .shadow(color: colors[index], radius: 100)
       .shadow(color: colors[index], radius: 200)
+      .navigationTitle("Glow Text")
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbarRole(.editor)
+      .toolbar(.hidden, for: .tabBar)
       .onAppear {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
           withAnimation {
@@ -44,5 +48,7 @@ struct GlowTextScreen: View, @unchecked Sendable {
 }
 
 #Preview {
-  GlowTextScreen()
+  NavigationStack {
+    GlowTextScreen()
+  }
 }

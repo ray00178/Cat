@@ -51,14 +51,14 @@ struct ParallaxImageScreen: View {
     .navigationTitle("Parallax Image")
     .navigationBarTitleDisplayMode(.inline)
     .navigationBarBackButtonHidden(true)
+    .toolbar(.hidden, for: .tabBar)
     .toolbar {
       ToolbarItem(placement: .topBarLeading) {
         Button(action: {
           path.removeLast()
         }, label: {
           Image(systemName: "arrow.left")
-            //.tint(.c374957)
-            .tint(.red)
+            .tint(.c374957)
         })
       }
     }
@@ -66,5 +66,7 @@ struct ParallaxImageScreen: View {
 }
 
 #Preview {
-  ParallaxImageScreen(path: .constant(.init()))
+  NavigationStack {
+    ParallaxImageScreen(path: .constant(.init()))
+  }
 }

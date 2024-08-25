@@ -10,8 +10,13 @@ import SwiftUI
 // Reference = https://x.com/sucodeee/status/1818977552188215482
 struct CircleAvtorScreen: View {
   
+  @Binding var path: [Category]
   @State private var spin: Bool = false
   @State private var scale: Bool = false
+  
+  init(path: Binding<[Category]>) {
+    _path = path
+  }
   
   var body: some View {
     ZStack {
@@ -43,6 +48,10 @@ struct CircleAvtorScreen: View {
       }
       .rotationEffect(.degrees(spin ? 360 : 0))
     }
+    .navigationTitle("Circle Avtor")
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbarRole(.editor)
+    .toolbar(.hidden, for: .tabBar)
     .onAppear {
       withAnimation(.linear(duration: 3).repeatForever(autoreverses: false)) {
         spin = true
@@ -56,6 +65,7 @@ struct CircleAvtorScreen: View {
 }
 
 #Preview {
-  CircleAvtorScreen()
-    .preferredColorScheme(.dark)
+  NavigationStack {
+    CircleAvtorScreen(path: .constant(.init()))
+  }
 }
