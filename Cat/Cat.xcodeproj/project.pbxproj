@@ -45,6 +45,7 @@
 		71D32C552BE1C27E002AAB26 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C542BE1C27E002AAB26 /* View+Extension.swift */; };
 		71F219682C7AF8FC009448F8 /* AnimationPracticeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F219672C7AF8FC009448F8 /* AnimationPracticeScreen.swift */; };
 		71F2196A2C7B059B009448F8 /* SwiftCharScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F219692C7B059B009448F8 /* SwiftCharScreen.swift */; };
+		71F2196C2C8DE158009448F8 /* ProgressAnimationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F2196B2C8DE158009448F8 /* ProgressAnimationScreen.swift */; };
 		71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */; };
 		71F8CCF92C023AD700B5D00A /* LEDSettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */; };
 		71F8CCFB2C0ABD0B00B5D00A /* FlipClockTextEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F8CCFA2C0ABD0B00B5D00A /* FlipClockTextEffectView.swift */; };
@@ -92,6 +93,7 @@
 		71D32C542BE1C27E002AAB26 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		71F219672C7AF8FC009448F8 /* AnimationPracticeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPracticeScreen.swift; sourceTree = "<group>"; };
 		71F219692C7B059B009448F8 /* SwiftCharScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCharScreen.swift; sourceTree = "<group>"; };
+		71F2196B2C8DE158009448F8 /* ProgressAnimationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressAnimationScreen.swift; sourceTree = "<group>"; };
 		71F8CCF42C0228CF00B5D00A /* LEDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDScreen.swift; sourceTree = "<group>"; };
 		71F8CCF82C023AD700B5D00A /* LEDSettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LEDSettingScreen.swift; sourceTree = "<group>"; };
 		71F8CCFA2C0ABD0B00B5D00A /* FlipClockTextEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipClockTextEffectView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				719EA0382C5F583C006D658D /* GlowTextScreen.swift */,
 				71F219672C7AF8FC009448F8 /* AnimationPracticeScreen.swift */,
 				71F219692C7B059B009448F8 /* SwiftCharScreen.swift */,
+				71F2196B2C8DE158009448F8 /* ProgressAnimationScreen.swift */,
 			);
 			name = Demo;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				717070202BD42EA200EB5F03 /* LoadingView.swift in Sources */,
 				719EA04B2C6BA5AD006D658D /* Applegate.swift in Sources */,
 				71706FFC2BCA5BBE00EB5F03 /* Array+Extension.swift in Sources */,
+				71F2196C2C8DE158009448F8 /* ProgressAnimationScreen.swift in Sources */,
 				717070132BCA5C1500EB5F03 /* APIRequest.swift in Sources */,
 				7170701C2BCD7B4F00EB5F03 /* LaunchScreen.swift in Sources */,
 				717070182BCA6DAC00EB5F03 /* CatDetailScreen.swift in Sources */,

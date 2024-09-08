@@ -51,6 +51,6 @@ extension Applegate: UNUserNotificationCenterDelegate {
 }
 
 // Reference = https://github.com/Dimillian/IceCubesApp/blob/main/Packages/Env/Sources/Env/PushNotificationsService.swift#L32
-extension UNUserNotificationCenter: @unchecked Sendable {}
-extension UNNotification: @unchecked Sendable {}
-extension UNNotificationResponse: @unchecked Sendable {}
+extension UNUserNotificationCenter: @unchecked @retroactive Sendable {}
+extension UNNotification: @unchecked @retroactive Sendable {}
+extension UNNotificationResponse: @unchecked @retroactive Sendable {}

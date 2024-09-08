@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 class ImageHelper: NSObject {
-  static let shared: ImageHelper = .init()
+  @MainActor static let shared: ImageHelper = .init()
 
   enum Status: Error {
     case success

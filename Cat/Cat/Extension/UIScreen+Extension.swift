@@ -20,7 +20,10 @@ extension UIScreen {
 
   /// Return the statusBar height of a rectangle.
   static var statusBarHeight: CGFloat {
-    return UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+    // https://stackoverflow.com/questions/57134259/how-to-resolve-keywindow-was-deprecated-in-ios-13-0
+    UIApplication.shared.connectedScenes
+      .compactMap { ($0 as? UIWindowScene)?.keyWindow }.last?.windowScene?
+      .statusBarManager?.statusBarFrame.height ?? 0
   }
 
   /// The natural scale factor associated with the screen.

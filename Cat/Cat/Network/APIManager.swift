@@ -194,7 +194,7 @@ struct APIError: Error {
 // MARK: - APIManagerKey
 
 struct APIManagerKey: EnvironmentKey {
-  static var defaultValue: APIManager = .shared
+  static let defaultValue: APIManager = .shared
 }
 
 extension EnvironmentValues {

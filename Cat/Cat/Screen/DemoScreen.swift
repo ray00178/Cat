@@ -20,7 +20,7 @@ struct DemoScreen: View {
   
   private let categories: [Category] = [
     .parallaxImage, .circleAvtor, .glowText,
-    .animation
+    .animation, .swiftchart
   ]
 
   private let screenW: CGFloat = UIScreen.main.bounds.width
@@ -61,11 +61,16 @@ struct DemoScreen: View {
           GlowTextScreen()
         case .animation:
           EmptyView()
+        case .swiftchart:
+          SwiftCharScreen()
         }
       }
-      .fullScreenCover(isPresented: $isPresent) {
+      .sheet(isPresented: $isPresent) {
         AnimationPracticeScreen()
       }
+      /*.fullScreenCover(isPresented: $isPresent) {
+        AnimationPracticeScreen()
+      }*/
     }
   }
 }
@@ -149,6 +154,8 @@ enum Category: Identifiable, Hashable {
   case glowText
   
   case animation
+  
+  case swiftchart
 
   var id: String {
     UUID().uuidString
@@ -164,6 +171,8 @@ enum Category: Identifiable, Hashable {
       "2024/08/04"
     case .animation:
       "2024/08/25"
+    case .swiftchart:
+      "2024/08/31"
     }
   }
 
@@ -177,6 +186,8 @@ enum Category: Identifiable, Hashable {
       "Glow Text"
     case .animation:
       "Animation"
+    case .swiftchart:
+      "Swift Chart"
     }
   }
 
@@ -184,7 +195,7 @@ enum Category: Identifiable, Hashable {
     switch self {
     case .parallaxImage, .animation:
       .image1Min
-    case .circleAvtor:
+    case .circleAvtor, .swiftchart:
       .image2Min
     case .glowText:
       .image3Min

@@ -212,7 +212,7 @@ struct ZoomImageScreen: UIViewControllerRepresentable {
     Coordinator(dismiss)
   }
 
-  class Coordinator: NSObject, ZoomImageVCDelagate {
+  class Coordinator: NSObject, @preconcurrency ZoomImageVCDelagate {
     var dismiss: DismissAction
 
     init(_ dismiss: DismissAction) {
@@ -223,7 +223,7 @@ struct ZoomImageScreen: UIViewControllerRepresentable {
 
     func panDidChanged(_: ZoomImageViewController, in _: UIView, alpha _: CGFloat) {}
 
-    func panDidEnded(_: ZoomImageViewController, in _: UIView) {
+    @MainActor func panDidEnded(_: ZoomImageViewController, in _: UIView) {
       dismiss()
     }
   }
