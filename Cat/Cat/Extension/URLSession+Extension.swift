@@ -17,6 +17,7 @@ extension URLSession {
     config.timeoutIntervalForRequest = 30
     config.timeoutIntervalForResource = 30
     config.multipathServiceType = .handover
+    config.httpAdditionalHeaders = ["Content-Type": "application/json"]
     
     return URLSession(configuration: config)
   }()

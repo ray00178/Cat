@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference = https://x.com/sucodeee
-struct GlowTextScreen: View, @unchecked Sendable {
+struct GlowTextScreen: View {
   
   @State private var index: Int = 0
   
@@ -40,7 +40,7 @@ struct GlowTextScreen: View, @unchecked Sendable {
       .onAppear {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
           withAnimation {
-            index = (index + 1) % colors.count
+            //index = (index + 1) % colors.count
           }
         }
       }

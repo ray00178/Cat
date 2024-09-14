@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - APIManager
 
 // Reference: https://pse.is/5wcbfw
-final class APIManager: ObservableObject, Sendable {
+struct APIManager: Sendable {
   static let shared: APIManager = .init()
 
   private init() {}
@@ -28,9 +27,9 @@ extension APIManager {
   ///   - type: Model Type
   ///   - session: URLSession, default = .normalSession
   /// - Returns: Model Type
-  private func request<T: Decodable>(request: APIRequest,
-                                     type _: T.Type,
-                                     using session: URLSession = .normalSession) async throws -> T
+  public func request<T: Decodable>(request: APIRequest,
+                                    type _: T.Type,
+                                    using session: URLSession = .normalSession) async throws -> T
   {
     guard let urlEncoding = request.path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
           let url = URL(string: urlEncoding)
@@ -45,7 +44,7 @@ extension APIManager {
     request.header.forEach { req.addValue($0.value, forHTTPHeaderField: $0.key) }
 
     let (data, response) = try await session.data(for: req, delegate: nil)
-
+    print("APIManager is in Main Thread = \(Thread.isMainThread)")
     // Reference: https://a11y-guidelines.orange.com/en/mobile/ios/wwdc/nota11y/2021/2110095/
     guard let httpResponse = response as? HTTPURLResponse
     else {
@@ -57,7 +56,11 @@ extension APIManager {
       throw APIError(statusCode: httpResponse.statusCode, kind: .responseFailure)
     }
 
-    return try JSONDecoder().decode(T.self, from: data)
+    do {
+      return try JSONDecoder().decode(T.self, from: data)
+    } catch {
+      throw APIError(statusCode: httpResponse.statusCode, kind: .decodingError)
+    }
   }
 
   /// Http Request Data
@@ -65,8 +68,8 @@ extension APIManager {
   ///   - request: APIRequest Model
   ///   - session: URLSession, default = .normalSession
   /// - Returns: Data, Maybe return nil
-  private func request(request: APIRequest,
-                       using session: URLSession = .normalSession) async throws -> Data
+  public func request(request: APIRequest,
+                      using session: URLSession = .normalSession) async throws -> Data
   {
     guard let urlEncoding = request.path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
           let url = URL(string: urlEncoding)
@@ -96,80 +99,6 @@ extension APIManager {
   }
 }
 
-// MARK: - Cat API
-
-extension APIManager {
-  public func fetchCatImages(page: Int, limit _: Int = 24) async -> [CatImage] {
-    let parameters: [String: String] = [
-      "page": "\(page)",
-      "limit": "\(24)",
-      "order": "DESC",
-      "has_breeds": "1",
-    ]
-
-    let req = APIRequest(method: .get, path: APISecret.domain, parameters: parameters)
-
-    let requestInfo = """
-    🔥🔥🔥 Request Post 🔥🔥🔥
-    \(req.method.rawValue) [\(req.path)]
-    \(req.header)
-    \(String(describing: req.parameters?.string))
-    """
-    print(requestInfo)
-
-    do {
-      let result = try await request(request: req, type: [CatImage].self, using: .cacheSession)
-      return result
-    } catch let error as APIError {
-      let message = """
-      ‼️‼️‼️APIError‼️‼️‼️
-      \(error.kind)
-      \(String(describing: error.statusCode))
-      """
-      print(message)
-      return .empty
-    } catch {
-      let message = """
-      ‼️‼️‼️Error‼️‼️‼️
-      \(error.localizedDescription)
-      """
-      print(message)
-      return .empty
-    }
-  }
-
-  public func fetchData(from url: String) async -> Data? {
-    let req = APIRequest(method: .get, path: url)
-
-    let requestInfo = """
-    🔥🔥🔥 Request Get 🔥🔥🔥
-    \(req.method.rawValue) [\(req.path)]
-    \(req.header)
-    """
-    print(requestInfo)
-
-    do {
-      let result = try await request(request: req, using: .cacheSession)
-      return result
-    } catch let error as APIError {
-      let message = """
-      ‼️‼️‼️APIError‼️‼️‼️
-      \(error.kind)
-      \(String(describing: error.statusCode))
-      """
-      print(message)
-      return nil
-    } catch {
-      let message = """
-      ‼️‼️‼️Error‼️‼️‼️
-      \(error.localizedDescription)
-      """
-      print(message)
-      return nil
-    }
-  }
-}
-
 // MARK: - APIError
 
 struct APIError: Error {
@@ -179,6 +108,8 @@ struct APIError: Error {
     case httpUnknownError
 
     case responseFailure
+
+    case decodingError
   }
 
   private(set) var statusCode: Int?
@@ -188,18 +119,5 @@ struct APIError: Error {
   init(statusCode: Int? = nil, kind: ErrorKind) {
     self.statusCode = statusCode
     self.kind = kind
-  }
-}
-
-// MARK: - APIManagerKey
-
-struct APIManagerKey: EnvironmentKey {
-  static let defaultValue: APIManager = .shared
-}
-
-extension EnvironmentValues {
-  var apiManager: APIManager {
-    get { self[APIManagerKey.self] }
-    set { self[APIManagerKey.self] = newValue }
   }
 }

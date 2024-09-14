@@ -16,7 +16,6 @@ extension Array {
   var data: Data? {
     return try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
   }
-  
 }
 
 extension Array {

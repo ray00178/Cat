@@ -13,8 +13,6 @@ import UIKit
 // Reference: https://matteomanferdini.com/swiftui-asyncimage/
 struct CatAsyanImageView: View {
   
-  @EnvironmentObject private var apiManager: APIManager
-
   @State private var start: Bool = false
   @State private var image: Image?
 
@@ -66,24 +64,12 @@ struct CatAsyanImageView: View {
         }
       }
     }
-    /*.onAppear {
-      Task {
-        if let url = url?.absoluteString,
-           let data = await apiManager.fetchData(from: url),
-           data.count != 0,
-           let uiImage = UIImage(data: data)
-        {
-          image = Image(uiImage: uiImage)
-        }
-      }
-    }*/
   }
 }
 
 #Preview {
   CatAsyanImageView(
     url: URL(string: "https://cdn2.thecatapi.com/images/d9b.jpg"))
-    .environmentObject(APIManager.shared)
 }
 
 // MARK: - LayoutType

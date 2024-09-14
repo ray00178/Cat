@@ -11,7 +11,6 @@ import SwiftUI
 
 // Reference = https://fatbobman.com/zh/posts/new_navigator_of_swiftui_4/
 
-@MainActor
 struct DemoScreen: View {
   @State private var scaleBool: Bool = false
   @State private var current: Category?
@@ -32,7 +31,8 @@ struct DemoScreen: View {
 
     NavigationStack(path: $path) {
       ScrollView {
-        LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemValue)),
+        LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemValue),
+                                                     spacing: padding),
                                  count: Int(column)),
                   spacing: padding)
         {

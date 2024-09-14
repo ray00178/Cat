@@ -50,5 +50,4 @@ struct CatLeftView: View {
 
 #Preview {
   CatLeftView(cats: CatImage.mockData())
-    .environmentObject(APIManager.shared)
 }

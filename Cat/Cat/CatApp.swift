@@ -27,7 +27,6 @@ struct CatApp: App {
             .animation(.easeOut(duration: 0.5), value: showing)
         } else {
           AppScreen()
-            .environmentObject(APIManager.shared)
         }
       }
       .onAppear {

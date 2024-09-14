@@ -8,7 +8,7 @@
 import SwiftUI
 
 // Reference = https://x.com/sucodeee/status/1819715043241410982
-struct LoadingWaveView: View, @unchecked Sendable {
+struct LoadingWaveView: View {
   @State private var current: Int = 0
 
   let colors: [Color] = [.blue, .green, .orange, .yellow, .red]
@@ -24,15 +24,15 @@ struct LoadingWaveView: View, @unchecked Sendable {
           .animation(.spring(duration: 0.9), value: current)
       }
     }
-    .onAppear {
+    /*.onAppear {
       startAnimation()
-    }
+    }*/
   }
   
   private func startAnimation() {
-    Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+    /*Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
       current = (current + 1) % colors.count
-    }
+    }*/
   }
 }
 

@@ -11,84 +11,123 @@ import SwiftUI
 
 struct CatScreen: View {
   // Reference: https://pse.is/5swnzn
-  @EnvironmentObject private var apiManager: APIManager
-
+  
+  @Environment(CatRepository.self) private var repository
+  
   @State private var page: Int = 0
   @State private var cats: [Cat] = .empty
+  
   @State private var activcImageId: String?
   @State private var lastImageId: String?
+  
   @State private var isLoading: Bool = true
   @State private var path: NavigationPath = .init()
 
   @State private var alertStatus: ImageHelper.Status?
   @State private var animation: Bool = false
 
+  // Reference = https://peterfriese.dev/blog/2024/hero-animation/
+  @Namespace private var namespace
+
+  let items: [GridItem] = [
+    GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 1),
+    GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 1),
+    GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 1)
+  ]
+
   var body: some View {
     NavigationStack(path: $path) {
-      if cats.isEmpty {
+      if repository.cats2.isEmpty {
         Text("🥺 Try again later")
           .bold()
           .fontDesign(.rounded)
           .font(.largeTitle)
       } else {
         ScrollView(.vertical) {
-          LazyVStack(spacing: 1) {
-            ForEach(cats) { cat in
-              switch cat.layout {
-              case .left:
-                CatLeftView(cats: cat.images, onPress: { catImage in
-                  path.append(catImage)
-                },
-                savePhoto: { image in
+          /* LazyVStack(spacing: 1) {
+             ForEach(cats) { cat in
+               switch cat.layout {
+               case .left:
+                 CatLeftView(cats: cat.images, onPress: { catImage in
+                   path.append(catImage)
+                 },
+                 savePhoto: { image in
+                   savePhotoToLibrary(image: image)
+                 })
+               case .average:
+                 CatBottomView(cats: cat.images, onPress: { catImage in
+                   path.append(catImage)
+                 },
+                 savePhoto: { image in
+                   savePhotoToLibrary(image: image)
+                 })
+               case .right:
+                 CatRightView(cats: cat.images, onPress: { catImage in
+                   path.append(catImage)
+                 },
+                 savePhoto: { image in
+                   savePhotoToLibrary(image: image)
+                 })
+               }
+             }
+           } */
+          LazyVGrid(columns: items, spacing: 1) {
+            ForEach(repository.cats2, id: \.id) { cat in
+              if #available(iOS 18.0, *) {
+                CatAsyanImageView(url: cat.url) { image in
                   savePhotoToLibrary(image: image)
-                })
-              case .average:
-                CatBottomView(cats: cat.images, onPress: { catImage in
-                  path.append(catImage)
-                },
-                savePhoto: { image in
+                }
+                .matchedTransitionSource(id: cat, in: namespace)
+                .onTapGesture {
+                  path.append(cat)
+                }
+                
+              } else {
+                CatAsyanImageView(url: cat.url) { image in
                   savePhotoToLibrary(image: image)
-                })
-              case .right:
-                CatRightView(cats: cat.images, onPress: { catImage in
-                  path.append(catImage)
-                },
-                savePhoto: { image in
-                  savePhotoToLibrary(image: image)
-                })
+                }
+                .onTapGesture {
+                  path.append(cat)
+                }
               }
             }
           }
+          .scrollTargetLayout()
           .overlay(alignment: .bottom) {
             if isLoading {
               LoadingView()
-                .offset(y: 24)
+                .offset(y: 40)
             }
           }
           .padding(.bottom, 40)
-          .scrollTargetLayout()
         }
         .scrollPosition(id: $activcImageId, anchor: .bottomTrailing)
-        .onChange(of: activcImageId) { _, newValue in
+        .onChange(of: activcImageId) { oldValue, newValue in
           if newValue == lastImageId, isLoading == false {
             Task {
               page += 1
-              await fetch(page: page)
+              await fetch2(page: page)
             }
           }
         }
         .refreshable {
           page = 0
-          cats.removeAll()
-          await fetch(page: page)
+          
+          await fetch2(page: page)
         }
         .navigationTitle("Cat Every Day")
         .navigationDestination(for: CatImage.self) { animal in
-          CatDetailScreen(path: $path, catImage: animal)
+          if #available(iOS 18.0, *) {
+            CatDetailScreen(path: $path, catImage: animal)
+              .navigationTransition(.zoom(sourceID: animal, in: namespace))
+          } else {
+            CatDetailScreen(path: $path, catImage: animal)
+          }
         }
         .toolbar {
           ToolbarItem(placement: .topBarTrailing) {
-            Button(action: {}, label: {
+            Button(action: {
+            }, label: {
               Image(systemName: "cat.fill")
             })
           }
@@ -96,15 +135,15 @@ struct CatScreen: View {
       }
     }
     .task {
-      if cats.isNotEmpty { return }
+      if repository.cats2.isNotEmpty { return }
 
-      await fetch(page: page)
+      await fetch2(page: page)
     }
     .overlay(alignment: .center) {
       switch alertStatus {
       case .success:
         successAlert()
-      case .failure(let message):
+      case let .failure(message):
         EmptyView()
       case nil:
         EmptyView()
@@ -112,7 +151,6 @@ struct CatScreen: View {
     }
   }
 
-  @MainActor
   @ViewBuilder
   private func successAlert() -> some View {
     ZStack {
@@ -151,7 +189,7 @@ struct CatScreen: View {
     }
   }
 
-  private func fetch(page: Int) async {
+  /*private func fetch(page: Int) async {
     isLoading = true
 
     let images = await apiManager.fetchCatImages(page: page)
@@ -159,18 +197,27 @@ struct CatScreen: View {
     lastImageId = cats.last?.id
 
     isLoading = false
+  }*/
+
+  private func fetch2(page: Int, refresh: Bool = false) async {
+    isLoading = true
+
+    await repository.fetchCatImages(page: page, refresh: refresh)
+    lastImageId = repository.cats2.last?.id
+
+    isLoading = false
   }
 
   private func savePhotoToLibrary(image: Image) {
     ImageHelper.shared.didCompleted = { status in
-      self.alertStatus = status
+      alertStatus = status
     }
-    
+
     ImageHelper.shared.savePhoto(image: image)
   }
 }
 
 #Preview {
   CatScreen()
-    .environmentObject(APIManager.shared)
+    .environment(CatRepository(apiManager: APIManager.shared))
 }

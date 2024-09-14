@@ -10,7 +10,8 @@ import SwiftUI
 // MARK: - CatDetailScreen
 
 struct CatDetailScreen: View {
-  @EnvironmentObject private var apiManager: APIManager
+  
+  @Environment(CatRepository.self) private var repository
   @Environment(\.dismiss) var dismiss
 
   @Binding var path: NavigationPath
@@ -130,7 +131,7 @@ struct CatDetailScreen: View {
 
   private func loadImageData() async {
     if let url = catImage.url?.absoluteString,
-       let data = await apiManager.fetchData(from: url),
+       let data = await repository.fetchData(from: url),
        data.count != 0,
        let value = UIImage(data: data)
     {
@@ -173,6 +174,6 @@ extension CatDetailScreen {
       path: .constant(.init()),
       catImage: CatImage.mockData()[0]
     )
-    .environmentObject(APIManager.shared)
+    .environment(CatRepository(apiManager: APIManager.shared))
   }
 }
