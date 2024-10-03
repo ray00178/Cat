@@ -1,5 +1,5 @@
 //
-//  Demo.swift
+//  LazyVGridDemoScreen.swift
 //  Cat
 //
 //  Created by Ray on 2024/9/13.
@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - ContentView
 
-struct Demo: View {
+struct LazyVGridDemoScreen: View {
   let items: [GridItem] = [
     GridItem(.flexible(), spacing: 1),
     GridItem(.flexible(), spacing: 1),
@@ -76,5 +76,5 @@ enum ImageSize {
 }
 
 #Preview {
-  Demo()
+  LazyVGridDemoScreen()
 }

@@ -19,7 +19,8 @@ struct DemoScreen: View {
   
   private let categories: [Category] = [
     .parallaxImage, .circleAvtor, .glowText,
-    .animation, .swiftchart
+    .animation, .swiftchart, .sunrise,
+    .appicon
   ]
 
   private let screenW: CGFloat = UIScreen.main.bounds.width
@@ -49,6 +50,7 @@ struct DemoScreen: View {
         }
         .padding(.horizontal, padding)
       }
+      .contentMargins(.bottom, 12)
       .navigationTitle("Demo")
       .navigationBarTitleDisplayMode(.large)
       .navigationDestination(for: Category.self) { categoty in
@@ -63,6 +65,10 @@ struct DemoScreen: View {
           EmptyView()
         case .swiftchart:
           SwiftCharScreen()
+        case .sunrise:
+          SunAnimationScreen()
+        case .appicon:
+          AppIconScreen()
         }
       }
       .sheet(isPresented: $isPresent) {
@@ -156,6 +162,10 @@ enum Category: Identifiable, Hashable {
   case animation
   
   case swiftchart
+  
+  case sunrise
+  
+  case appicon
 
   var id: String {
     UUID().uuidString
@@ -173,6 +183,10 @@ enum Category: Identifiable, Hashable {
       "2024/08/25"
     case .swiftchart:
       "2024/08/31"
+    case .sunrise:
+      "2024/10/02"
+    case .appicon:
+      "2024/10/03"
     }
   }
 
@@ -188,16 +202,20 @@ enum Category: Identifiable, Hashable {
       "Animation"
     case .swiftchart:
       "Swift Chart"
+    case .sunrise:
+      "Sunrise"
+    case .appicon:
+      "AppIcon"
     }
   }
 
   var image: ImageResource {
     switch self {
-    case .parallaxImage, .animation:
+    case .parallaxImage, .animation, .appicon:
       .image1Min
     case .circleAvtor, .swiftchart:
       .image2Min
-    case .glowText:
+    case .glowText, .sunrise:
       .image3Min
     }
   }

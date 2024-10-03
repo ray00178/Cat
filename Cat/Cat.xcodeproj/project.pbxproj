@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		712641BD2CACC2670048DCF9 /* SunAnimationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */; };
+		712641BF2CAE89FA0048DCF9 /* AppIconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */; };
 		71706FE92BCA5B8900EB5F03 /* CatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71706FE82BCA5B8900EB5F03 /* CatApp.swift */; };
 		71706FEB2BCA5B8900EB5F03 /* AppScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71706FEA2BCA5B8900EB5F03 /* AppScreen.swift */; };
 		71706FED2BCA5B8A00EB5F03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71706FEC2BCA5B8A00EB5F03 /* Assets.xcassets */; };
@@ -41,7 +43,7 @@
 		719EA0452C6A558F006D658D /* LoadingWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA0442C6A558F006D658D /* LoadingWaveView.swift */; };
 		719EA04B2C6BA5AD006D658D /* Applegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA04A2C6BA5AD006D658D /* Applegate.swift */; };
 		719EA04F2C701C05006D658D /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719EA04E2C701C05006D658D /* DemoScreen.swift */; };
-		71AC75B52C9482DC00755E61 /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC75B42C9482DC00755E61 /* Demo.swift */; };
+		71AC75B52C9482DC00755E61 /* LazyVGridDemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC75B42C9482DC00755E61 /* LazyVGridDemoScreen.swift */; };
 		71AC75B72C95062E00755E61 /* ScrollViewPracticeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC75B62C95062E00755E61 /* ScrollViewPracticeScreen.swift */; };
 		71AC75C52C9563B800755E61 /* CatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AC75C42C9563B800755E61 /* CatRepository.swift */; };
 		71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */; };
@@ -56,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunAnimationScreen.swift; sourceTree = "<group>"; };
+		712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconScreen.swift; sourceTree = "<group>"; };
 		71706FE52BCA5B8900EB5F03 /* Cat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71706FE82BCA5B8900EB5F03 /* CatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApp.swift; sourceTree = "<group>"; };
 		71706FEA2BCA5B8900EB5F03 /* AppScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreen.swift; sourceTree = "<group>"; };
@@ -92,7 +96,7 @@
 		719EA0442C6A558F006D658D /* LoadingWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWaveView.swift; sourceTree = "<group>"; };
 		719EA04A2C6BA5AD006D658D /* Applegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applegate.swift; sourceTree = "<group>"; };
 		719EA04E2C701C05006D658D /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScreen.swift; sourceTree = "<group>"; };
-		71AC75B42C9482DC00755E61 /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
+		71AC75B42C9482DC00755E61 /* LazyVGridDemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVGridDemoScreen.swift; sourceTree = "<group>"; };
 		71AC75B62C95062E00755E61 /* ScrollViewPracticeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewPracticeScreen.swift; sourceTree = "<group>"; };
 		71AC75C42C9563B800755E61 /* CatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatRepository.swift; sourceTree = "<group>"; };
 		71D32C522BDBFB76002AAB26 /* WeatherScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherScreen.swift; sourceTree = "<group>"; };
@@ -147,7 +151,6 @@
 				719EA04A2C6BA5AD006D658D /* Applegate.swift */,
 				71706FEC2BCA5B8A00EB5F03 /* Assets.xcassets */,
 				71706FEE2BCA5B8A00EB5F03 /* Preview Content */,
-				71AC75B42C9482DC00755E61 /* Demo.swift */,
 			);
 			path = Cat;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				7170701B2BCD7B4F00EB5F03 /* LaunchScreen.swift */,
 				718019342BEFDD1C00038740 /* ScaleImageScreen.swift */,
 				719EA03C2C67A8FE006D658D /* ZoomImageScreen.swift */,
+				71AC75B42C9482DC00755E61 /* LazyVGridDemoScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -271,6 +275,8 @@
 				71F219692C7B059B009448F8 /* SwiftCharScreen.swift */,
 				71F2196B2C8DE158009448F8 /* ProgressAnimationScreen.swift */,
 				71AC75B62C95062E00755E61 /* ScrollViewPracticeScreen.swift */,
+				712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */,
+				712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */,
 			);
 			name = Demo;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				718019352BEFDD1C00038740 /* ScaleImageScreen.swift in Sources */,
 				719EA0392C5F583C006D658D /* GlowTextScreen.swift in Sources */,
 				719EA03F2C67AD0A006D658D /* UIScreen+Extension.swift in Sources */,
+				712641BD2CACC2670048DCF9 /* SunAnimationScreen.swift in Sources */,
 				7170700A2BCA5BEC00EB5F03 /* CatLeftView.swift in Sources */,
 				719EA0372C5F555D006D658D /* CircleAvtorScreen.swift in Sources */,
 				71AC75B72C95062E00755E61 /* ScrollViewPracticeScreen.swift in Sources */,
@@ -362,6 +369,7 @@
 				71AC75C52C9563B800755E61 /* CatRepository.swift in Sources */,
 				71706FFD2BCA5BBE00EB5F03 /* URLSession+Extension.swift in Sources */,
 				7170700D2BCA5BFD00EB5F03 /* Cat.swift in Sources */,
+				712641BF2CAE89FA0048DCF9 /* AppIconScreen.swift in Sources */,
 				71F8CCF52C0228CF00B5D00A /* LEDScreen.swift in Sources */,
 				71D32C532BDBFB76002AAB26 /* WeatherScreen.swift in Sources */,
 				7170700E2BCA5BFD00EB5F03 /* CatImage.swift in Sources */,
@@ -379,7 +387,7 @@
 				717070082BCA5BEC00EB5F03 /* CatBottomView.swift in Sources */,
 				719EA04F2C701C05006D658D /* DemoScreen.swift in Sources */,
 				71F8CCFD2C1D0CBD00B5D00A /* String+Extension.swift in Sources */,
-				71AC75B52C9482DC00755E61 /* Demo.swift in Sources */,
+				71AC75B52C9482DC00755E61 /* LazyVGridDemoScreen.swift in Sources */,
 				717070122BCA5C1500EB5F03 /* APIManager.swift in Sources */,
 				717070092BCA5BEC00EB5F03 /* CatAsyanImageView.swift in Sources */,
 				71F219682C7AF8FC009448F8 /* AnimationPracticeScreen.swift in Sources */,
@@ -517,6 +525,7 @@
 		71706FF42BCA5B8A00EB5F03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon3 AppIcon2";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -545,6 +554,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
@@ -555,6 +565,7 @@
 		71706FF52BCA5B8A00EB5F03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon3 AppIcon2";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -583,6 +594,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;

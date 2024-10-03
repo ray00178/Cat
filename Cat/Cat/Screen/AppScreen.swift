@@ -32,6 +32,7 @@ struct AppScreen: View {
       }
     }
     .tint(.c374957)
+    .environment(CatRepository(apiManager: APIManager.shared))
   }
 }
 
