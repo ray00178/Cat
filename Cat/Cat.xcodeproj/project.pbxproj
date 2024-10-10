@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71135ABE2CB8138E0027EEE4 /* ScrollTransitionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71135ABD2CB8138E0027EEE4 /* ScrollTransitionsScreen.swift */; };
 		712641BD2CACC2670048DCF9 /* SunAnimationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */; };
 		712641BF2CAE89FA0048DCF9 /* AppIconScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */; };
 		71706FE92BCA5B8900EB5F03 /* CatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71706FE82BCA5B8900EB5F03 /* CatApp.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71135ABD2CB8138E0027EEE4 /* ScrollTransitionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTransitionsScreen.swift; sourceTree = "<group>"; };
 		712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunAnimationScreen.swift; sourceTree = "<group>"; };
 		712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconScreen.swift; sourceTree = "<group>"; };
 		71706FE52BCA5B8900EB5F03 /* Cat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +279,7 @@
 				71AC75B62C95062E00755E61 /* ScrollViewPracticeScreen.swift */,
 				712641BC2CACC2670048DCF9 /* SunAnimationScreen.swift */,
 				712641BE2CAE89FA0048DCF9 /* AppIconScreen.swift */,
+				71135ABD2CB8138E0027EEE4 /* ScrollTransitionsScreen.swift */,
 			);
 			name = Demo;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				719EA0372C5F555D006D658D /* CircleAvtorScreen.swift in Sources */,
 				71AC75B72C95062E00755E61 /* ScrollViewPracticeScreen.swift in Sources */,
 				717070142BCA5C1500EB5F03 /* APISecret.swift in Sources */,
+				71135ABE2CB8138E0027EEE4 /* ScrollTransitionsScreen.swift in Sources */,
 				717070162BCA5C2D00EB5F03 /* CatScreen.swift in Sources */,
 				71F2196A2C7B059B009448F8 /* SwiftCharScreen.swift in Sources */,
 				71706FEB2BCA5B8900EB5F03 /* AppScreen.swift in Sources */,
